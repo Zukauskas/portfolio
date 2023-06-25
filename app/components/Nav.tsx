@@ -1,10 +1,16 @@
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 export default function Nav () {
+  const pathName = usePathname();
+
   return (
     <nav className='bg-white border-gray-200 dark:bg-gray-900 z-10'>
       <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-blue-600 w-11/12 md:w-6/12 xl:w-3/12 rounded-3xl z-10'>
-        <a
+        <Link
           aria-current='page'
-          className='inline-flex flex-col items-center text-xs font-medium py-3 px-4 text-white flex-grow'
+          className={`inline-flex flex-col items-center text-xs font-medium py-3 px-4 flex-grow ${pathName === '/' ? 'text-white' : 'text-blue-400'} hover:text-white`}
           href='/'
         >
           <svg
@@ -16,9 +22,9 @@ export default function Nav () {
             <path d='M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z' />
           </svg>
           <span className='sr-only'>Home</span>
-        </a>
-        <a
-          className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
+        </Link>
+        <Link
+          className={`inline-flex flex-col items-center text-xs font-medium ${pathName === '/about' ? 'text-white' : 'text-blue-400'} hover:text-white py-3 px-4 flex-grow`}
           href='/about'
         >
           <svg
@@ -34,8 +40,8 @@ export default function Nav () {
             />
           </svg>
           <span className='sr-only'>About me</span>
-        </a>
-        <a
+        </Link>
+        <Link
           className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
           href='#'
         >
@@ -52,8 +58,8 @@ export default function Nav () {
             />
           </svg>
           <span className='sr-only'>Projects</span>
-        </a>
-        <a
+        </Link>
+        <Link
           className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
           href='#'
         >
@@ -70,7 +76,7 @@ export default function Nav () {
             />
           </svg>
           <span className='sr-only'>Blog</span>
-        </a>
+        </Link>
       </div>
     </nav>
   );
