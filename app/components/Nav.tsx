@@ -5,7 +5,7 @@ export default function Nav () {
         <a
           aria-current='page'
           className='inline-flex flex-col items-center text-xs font-medium py-3 px-4 text-white flex-grow'
-          href='#'
+          href='/'
         >
           <svg
             className='w-7 h-7'
@@ -19,7 +19,7 @@ export default function Nav () {
         </a>
         <a
           className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
-          href='#'
+          href='/about'
         >
           <svg
             className='w-7 h-7'
@@ -33,7 +33,7 @@ export default function Nav () {
               clipRule='evenodd'
             />
           </svg>
-          <span className='sr-only'>Projects</span>
+          <span className='sr-only'>About me</span>
         </a>
         <a
           className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
@@ -51,7 +51,7 @@ export default function Nav () {
               clipRule='evenodd'
             />
           </svg>
-          <span className='sr-only'>Blog</span>
+          <span className='sr-only'>Projects</span>
         </a>
         <a
           className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
@@ -69,7 +69,7 @@ export default function Nav () {
               clipRule='evenodd'
             />
           </svg>
-          <span className='sr-only'>Socials</span>
+          <span className='sr-only'>Blog</span>
         </a>
       </div>
     </nav>
