@@ -1,7 +1,7 @@
 export default function Nav () {
   return (
     <nav className='bg-white border-gray-200 dark:bg-gray-900'>
-      <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-blue-600 w-3/12 rounded-3xl'>
+      <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-blue-600 w-11/12 md:w-6/12 xl:w-3/12 rounded-3xl'>
         <a
           aria-current='page'
           className='inline-flex flex-col items-center text-xs font-medium py-3 px-4 text-white flex-grow'
