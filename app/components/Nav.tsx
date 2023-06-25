@@ -1,27 +1,76 @@
 export default function Nav () {
   return (
     <nav className='bg-white border-gray-200 dark:bg-gray-900'>
-      <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-        <a href='#' className='flex items-center'>
-          <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>Zukauskas.dev</span>
+      <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-blue-600 w-3/12 rounded-3xl'>
+        <a
+          aria-current='page'
+          className='inline-flex flex-col items-center text-xs font-medium py-3 px-4 text-white flex-grow'
+          href='#'
+        >
+          <svg
+            className='w-7 h-7'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path d='M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z' />
+          </svg>
+          <span className='sr-only'>Home</span>
         </a>
-        <button data-collapse-toggle='navbar-default' type='button' className='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600' aria-controls='navbar-default' aria-expanded='false'>
-          <span className='sr-only'>Open main menu</span>
-          <svg className='w-6 h-6' aria-hidden='true' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fillRule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clipRule='evenodd' /></svg>
-        </button>
-        <div className='hidden w-full md:block md:w-auto' id='navbar-default'>
-          <ul className='font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
-            <li>
-              <a href='#' className='block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500' aria-current='page'>Home</a>
-            </li>
-            <li>
-              <a href='#' className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>Projects</a>
-            </li>
-            <li>
-              <a href='#' className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'>Blog</a>
-            </li>
-          </ul>
-        </div>
+        <a
+          className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
+          href='#'
+        >
+          <svg
+            className='w-7 h-7'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              fillRule='evenodd'
+              d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z'
+              clipRule='evenodd'
+            />
+          </svg>
+          <span className='sr-only'>Projects</span>
+        </a>
+        <a
+          className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
+          href='#'
+        >
+          <svg
+            className='w-7 h-7'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              fillRule='evenodd'
+              d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
+              clipRule='evenodd'
+            />
+          </svg>
+          <span className='sr-only'>Blog</span>
+        </a>
+        <a
+          className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
+          href='#'
+        >
+          <svg
+            className='w-7 h-7'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              fillRule='evenodd'
+              d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z'
+              clipRule='evenodd'
+            />
+          </svg>
+          <span className='sr-only'>Socials</span>
+        </a>
       </div>
     </nav>
   );
