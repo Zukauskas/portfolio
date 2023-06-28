@@ -131,10 +131,10 @@ export default function About (): JSX.Element {
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
-                    <li>Engaged in productive discussions with business clients, gathered requirements, and leveraged digital tools to create impactful marketing campaigns and automation.</li>
-                    <li>Collaborated closely with development teams to continuously improve the platform, exploring the potential for creating a proprietary SaaS solution.</li>
-                    <li>Engaged in productive discussions with business clients, gathering requirements, and leveraging digital tools to create impactful marketing campaigns and automation.</li>
-                    <li>Created comprehensive documentation for all tools and processes, as well as developed learning materials to facilitate efficient onboarding of new team members.</li>
+                    <li>Oversaw the management of various digital products within our ecosystem, the one we developed internally and from partners.</li>
+                    <li>Collaborated closely with development teams to continuously enhance our platform's functionality, actively exploring the possibility of creating a proprietary SaaS solution.</li>
+                    <li>Engaged in productive discussions with business clients and customers, gathering requirements, and leveraging digital tools to create impactful marketing campaigns and automation.</li>
+                    <li>Demonstrated strong documentation skills, capturing detailed information on all tools and processes while also creating comprehensive learning materials for new team members, fostering knowledge sharing and efficient on-boarding.</li>
                   </ul>
                 </div>
 
@@ -148,9 +148,10 @@ export default function About (): JSX.Element {
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
-                    <li>Spearheaded the creation of an automated integration system, collaborating closely with developers, to streamline the process of receiving and validating product data from sellers on our platform.</li>
-                    <li>Implemented templates inspired by industry-leading platforms like Amazon, ensuring seamless data validation and allocation to appropriate categories, with the ability to address errors through manual intervention when necessary.</li>
-                    <li>Played a pivotal role in developing product management systems, merchandising tools, and an automatic size assignment tool, improving overall platform functionality and enhancing the customer experience. Additionally, facilitated effective communication between internal teams, business clients, and development teams, ensuring smooth collaboration and successful project delivery.</li>
+                    <li>Led the development of an automated integration system in close collaboration with the development team, streamlining the process of receiving and validating product data from sellers on the platform.</li>
+                    <li>Implemented templates inspired by industry-leading platforms, such as Amazon, to ensure seamless data validation and accurate allocation to appropriate categories, allowing for manual error resolution when required.</li>
+                    <li>Played a critical role in the creation of product management systems, merchandising tools, and an automatic size assignment tool, significantly enhancing overall platform functionality and elevating the customer experience.</li>
+                    <li>Facilitated effective communication between internal teams, business clients, and the development team, fostering seamless collaboration and successful project delivery.</li>
                   </ul>
                 </div>
 
@@ -164,9 +165,9 @@ export default function About (): JSX.Element {
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
-                    <li>Ensured meticulous quality checks for all product data on our ecommerce platform, including images, measurements, descriptions, and links.</li>
-                    <li>Provided valuable suggestions to the development teams for automating and streamlining the data entry process, contributing to increased efficiency.</li>
-                    <li>Thrived in a fast-paced environment that demanded attention to detail and independence, requiring proactive research and problem-solving rather than relying on constant guidance.</li>
+                    <li>Ensured data accuracy and quality control for the e-commerce platform through meticulous review and verification of product information, including images, measurements, descriptions, and links.</li>
+                    <li>Offered valuable recommendations to the development teams for automating and streamlining the data entry process, leading to improved efficiency and decreased reliance on manual effort.</li>
+                    <li>Excelled in a dynamic and fast-paced environment, where attention to detail and independence were crucial, necessitating proactive research and problem-solving capabilities rather than continuous guidance.</li>
                   </ul>
                 </div>
 
