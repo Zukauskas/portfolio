@@ -7,13 +7,13 @@ export default function About (): JSX.Element {
       <main>
         <div className='min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4 pb-20'>
           <Image className='absolute top-0 left-0 w-full h-full bg-cover bg-center' src='/bg-image.jpg' alt='image with programming code' width='1920' height='1080' />
-          <div className='z-9 bg-[#f8f8f2] absolute top-0 bottom-0 w-full rounded-xl'>
-            <div className=' border-b-2 border-[#44475a] bg-[#bd93f9] text-center flex items-center justify-center rounded-t-lg'>
+          <div className='z-9 bg-[#f8f8f2] absolute top-0 bottom-0 w-full rounded-xl sm:top-2 sm:bottom-2 sm:w-10/12 md:w-9/12 lg:w-10/12 overflow-scroll'>
+            <div className=' border-b-2 border-[#44475a] bg-[#bd93f9] text-center flex items-center justify-center rounded-t-lg z-25'>
               <p className='text-xl md:text-2xl text-[#44475a] font-bold z-10'>About Me</p>
               <Link className=' absolute right-3' href='/'>X</Link>
             </div>
-            <div className='flex flex-col gap-6 px-4'>
-              <div className='bg-white shadow rounded-lg p-6 w-full'>
+            <div className='flex flex-col lg:flex-row gap-6 px-4'>
+              <div className='bg-white shadow rounded-lg p-6 w-full lg:w-3/12'>
                 <div className='flex flex-col items-center'>
                   <Image src='/profilepic.jpeg' alt='profile picture' width='128' height='128' className='w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0' />
                   <h1 className='text-xl font-bold'>Tautvydas Žukauskas</h1>
@@ -40,7 +40,7 @@ export default function About (): JSX.Element {
                   </div>
                 </div>
               </div>
-              <div className='bg-white shadow rounded-lg p-6 w-full'>
+              <div className='bg-white shadow rounded-lg p-6 w-full lg:w-9/12'>
                 <h2 className='text-xl font-bold mb-4'>About Me</h2>
                 <p className='text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est
                   vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
