@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Nav from './components/Nav';
 
 export default function Home () {
   return (
@@ -11,7 +10,6 @@ export default function Home () {
           <p className=' z-10 text-2xl text-white'> And I am a web developer!</p>
         </div>
       </main>
-      <Nav />
     </>
   );
 }
