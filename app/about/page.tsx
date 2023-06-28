@@ -96,12 +96,12 @@ export default function About (): JSX.Element {
 
                 {/* Education 1 */}
                 <div className='mb-6'>
-                  <div className='flex items-center'>
-                    <div className='w-1/3'>
+                  <div className='flex flex-col'>
+                    <div className='w-full'>
                       <p className='text-gray-600 font-bold'>Javascript developer, Web Development</p>
                       <p className='text-gray-600'>Baltic Institute of Technology</p>
                     </div>
-                    <div className='w-2/3'>
+                    <div className='w-full'>
                       <span className='text-gray-600'>Nov 2022 - Apr 2023</span>
                     </div>
                   </div>
@@ -109,12 +109,12 @@ export default function About (): JSX.Element {
 
                 {/* Education 2 */}
                 <div className='mb-6'>
-                  <div className='flex items-center'>
-                    <div className='w-1/3'>
+                  <div className='flex flex-col'>
+                    <div className='w-full'>
                       <p className='text-gray-600 font-bold'>Bachelor's degree, Physics</p>
                       <p className='text-gray-600'>Vytauto Didžiojo universitetas</p>
                     </div>
-                    <div className='w-2/3'>
+                    <div className='w-full'>
                       <span className='text-gray-600'>2010 - 2014</span>
                     </div>
                   </div>
@@ -123,11 +123,11 @@ export default function About (): JSX.Element {
 
                 {/* Digital Product Manager */}
                 <div className='mb-6'>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-600 font-bold'>Digital Product Manager</span>
+                  <div className='flex flex-col justify-between mb-4'>
+                    <p className='text-gray-600 font-bold'>Digital Product Manager</p>
                     <p>
-                      <span className='text-gray-600 mr-2'>at Nordic-Baltic Support</span>
-                      <span className='text-gray-600'>Dec 2021 - Aug 2022 (9 months)</span>
+                      <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
+                      <p className='text-gray-600'>Dec 2021 - Aug 2022 (9 months)</p>
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
@@ -140,11 +140,11 @@ export default function About (): JSX.Element {
 
                 {/* Electronic Platform Specialist */}
                 <div className='mb-6'>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-600 font-bold'>Electronic Platform Specialist</span>
+                  <div className='flex flex-col justify-between mb-4'>
+                    <p className='text-gray-600 font-bold'>Electronic Platform Specialist</p>
                     <p>
-                      <span className='text-gray-600 mr-2'>at Nordic-Baltic Support</span>
-                      <span className='text-gray-600'>Mar 2019 - Dec 2021 (2 years 10 months)</span>
+                      <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
+                      <p className='text-gray-600'>Mar 2019 - Dec 2021 (2 years 10 months)</p>
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
@@ -157,11 +157,11 @@ export default function About (): JSX.Element {
 
                 {/* Data Entry Specialist */}
                 <div className='mb-12'>
-                  <div className='flex justify-between'>
-                    <span className='text-gray-600 font-bold'>Data Entry Specialist</span>
+                  <div className='flex flex-col justify-between mb-4'>
+                    <p className='text-gray-600 font-bold'>Data Entry Specialist</p>
                     <p>
-                      <span className='text-gray-600 mr-2'>at Nordic-Baltic Outsource</span>
-                      <span className='text-gray-600'>May 2015 - Mar 2019 (3 years 11 months)</span>
+                      <p className='text-gray-600 mr-2'>at Nordic-Baltic Outsource</p>
+                      <p className='text-gray-600'>May 2015 - Mar 2019 (3 years 11 months)</p>
                     </p>
                   </div>
                   <ul className='list-disc pl-8'>
