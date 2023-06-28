@@ -1,13 +1,13 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-export default function Nav () {
-  const pathName = usePathname();
+export default function Nav (): JSX.Element {
+  const pathName = usePathname()
 
   return (
-    <nav className='bg-white border-gray-200 dark:bg-gray-900 z-10'>
-      <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-blue-600 w-11/12 md:w-6/12 xl:w-3/12 rounded-3xl z-10'>
+    <nav className='bg-white border-gray-200 z-10'>
+      <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 inline-flex mx-auto justify-between bg-[#6272a4] w-11/12 md:w-6/12 xl:w-3/12 rounded-3xl z-10'>
         <Link
           aria-current='page'
           className={`inline-flex flex-col items-center text-xs font-medium py-3 px-4 flex-grow ${pathName === '/' ? 'text-white' : 'text-blue-400'} hover:text-white`}
@@ -79,5 +79,5 @@ export default function Nav () {
         </Link>
       </div>
     </nav>
-  );
+  )
 }
