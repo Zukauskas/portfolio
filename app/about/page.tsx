@@ -7,36 +7,40 @@ export default function About (): JSX.Element {
       <main>
         <div className='min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4 pb-20'>
           <Image className='absolute top-0 left-0 w-full h-full bg-cover bg-center' src='/bg-image.jpg' alt='image with programming code' width='1920' height='1080' />
-          <div className='z-9 bg-[#f8f8f2] absolute top-5 bottom-2 w-10/12 rounded-xl'>
+          <div className='z-9 bg-[#f8f8f2] absolute top-0 bottom-0 w-full rounded-xl'>
             <div className=' border-b-2 border-[#44475a] bg-[#bd93f9] text-center flex items-center justify-center rounded-t-lg'>
               <p className='text-xl md:text-2xl text-[#44475a] font-bold z-10'>About Me</p>
               <Link className=' absolute right-3' href='/'>X</Link>
             </div>
-            <div className='flex gap-6 px-4'>
-              <div className='bg-white shadow rounded-lg p-6 w-3/12'>
+            <div className='flex flex-col gap-6 px-4'>
+              <div className='bg-white shadow rounded-lg p-6 w-full'>
                 <div className='flex flex-col items-center'>
                   <Image src='/profilepic.jpeg' alt='profile picture' width='128' height='128' className='w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0' />
                   <h1 className='text-xl font-bold'>Tautvydas Žukauskas</h1>
                   <p className='text-gray-600'>Junior Software Developer</p>
                   <div className='mt-6 flex flex-wrap gap-4 justify-center'>
-                    <a href='#' className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded'>Contact</a>
-                    <a href='#' className='bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded'>Resume</a>
+                    <a href='mailto:tautzuk@tutanota.com' className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded'>Contact</a>
+                    <a href='/Resume.pdf' className='bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded'>Resume</a>
                   </div>
                 </div>
                 <div className='my-6 border-t border-gray-300'>
                   <div className='flex flex-col'>
-                    <span className='text-gray-600 uppercase font-bold tracking-wider mb-2'>Skills</span>
-                    <ul>
-                      <li className='mb-2'>JavaScript</li>
-                      <li className='mb-2'>React</li>
-                      <li className='mb-2'>Node.js</li>
-                      <li className='mb-2'>HTML/CSS</li>
-                      <li className='mb-2'>Tailwind Css</li>
+                    <p className='text-gray-600 uppercase font-bold tracking-wider mb-2'>Skills</p>
+                    <ul className='flex gap-2 flex-wrap'>
+                      <li><Image src='/technologies/html5.png' width='72' height='36' alt='html5 icon' /></li>
+                      <li><Image src='/technologies/css3.png' width='72' height='36' alt='css3 icon' /></li>
+                      <li><Image src='/technologies/javascript.png' width='72' height='36' alt='javascript icon' /></li>
+                      <li><Image src='/technologies/nodejs.png' width='72' height='36' alt='nodejs icon' /></li>
+                      <li><Image src='/technologies/react.png' width='72' height='36' alt='react icon' /></li>
+                      <li><Image src='/technologies/tailwind.png' width='72' height='36' alt='tailwind icon' /></li>
+                      <li><Image src='/technologies/npm.png' width='72' height='36' alt='npm icon' /></li>
+                      <li><Image src='/technologies/git.png' width='72' height='36' alt='git icon' /></li>
+                      <li><Image src='/technologies/github.png' width='72' height='36' alt='github icon' /></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div className='bg-white shadow rounded-lg p-6 w-9/12'>
+              <div className='bg-white shadow rounded-lg p-6 w-full'>
                 <h2 className='text-xl font-bold mb-4'>About Me</h2>
                 <p className='text-gray-700'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est
                   vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
