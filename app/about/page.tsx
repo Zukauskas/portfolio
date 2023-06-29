@@ -49,7 +49,7 @@ export default function About (): JSX.Element {
                   My unique educational experience has equipped me with a strong foundation in problem-solving and a keen understanding of technology, allowing me to excel in various roles throughout my career.
                 </p>
                 <p className='text-gray-700'>
-                  As a recent graduate of the Baltic Institute of Technology's FE Developer program, I have gained valuable expertise in Javascript, HTML, CSS, React.js. As a self-motivated and intellectually curious individual, I am eager to leverage my junior-level skills to create innovative web solutions.
+                  As a recent graduate of the Baltic Institute of Technology&apos;s FE Developer program, I have gained valuable expertise in Javascript, HTML, CSS, React.js. As a self-motivated and intellectually curious individual, I am eager to leverage my junior-level skills to create innovative web solutions.
                 </p>
 
                 <h3 className='font-semibold text-center mt-3 -mb-2'>
@@ -111,7 +111,7 @@ export default function About (): JSX.Element {
                 <div className='mb-6'>
                   <div className='flex flex-col'>
                     <div className='w-full'>
-                      <p className='text-gray-600 font-bold'>Bachelor's degree, Physics</p>
+                      <p className='text-gray-600 font-bold'>Bachelor&apos;s degree, Physics</p>
                       <p className='text-gray-600'>Vytauto Didžiojo universitetas</p>
                     </div>
                     <div className='w-full'>
@@ -132,7 +132,7 @@ export default function About (): JSX.Element {
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Oversaw the management of various digital products within our ecosystem, the one we developed internally and from partners.</li>
-                    <li>Collaborated closely with development teams to continuously enhance our platform's functionality, actively exploring the possibility of creating a proprietary SaaS solution.</li>
+                    <li>Collaborated closely with development teams to continuously enhance our platform&apos;s functionality, actively exploring the possibility of creating a proprietary SaaS solution.</li>
                     <li>Engaged in productive discussions with business clients and customers, gathering requirements, and leveraging digital tools to create impactful marketing campaigns and automation.</li>
                     <li>Demonstrated strong documentation skills, capturing detailed information on all tools and processes while also creating comprehensive learning materials for new team members, fostering knowledge sharing and efficient on-boarding.</li>
                   </ul>
