@@ -1,7 +1,27 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function About (): JSX.Element {
+  const [repos, setRepos] = useState([])
+
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      try {
+        const response = await fetch('https://api.github.com/users/zukauskas/repos')
+        const data = await response.json()
+        setRepos(data)
+      } catch (error) {
+        console.error('Error retrieving repositories:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  console.log(repos)
+
   return (
     <>
       <main>
