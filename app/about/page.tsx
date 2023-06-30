@@ -10,7 +10,7 @@ export default function About (): JSX.Element {
           <div className='z-9 bg-[#f8f8f2] absolute top-0 bottom-0 w-full rounded-xl sm:top-2 sm:bottom-2 sm:w-10/12 md:w-9/12 lg:w-10/12 overflow-scroll'>
             <div className=' border-b-2 border-[#44475a] bg-[#bd93f9] text-center flex items-center justify-center rounded-t-lg z-25'>
               <p className='text-xl md:text-2xl text-[#44475a] font-bold z-10'>About Me</p>
-              <Link className=' absolute right-3' href='/'>X</Link>
+              <Link className=' absolute right-3' href='/'><svg className='text-[#282a36]' height='24px' viewBox='0 0 512 512' width='24px' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z' /></svg></Link>
             </div>
             <div className='flex flex-col lg:flex-row gap-6 px-4'>
               <div className='bg-white shadow rounded-lg p-6 w-full lg:w-3/12'>
@@ -125,10 +125,10 @@ export default function About (): JSX.Element {
                 <div className='mb-6'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Digital Product Manager</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
                       <p className='text-gray-600'>Dec 2021 - Aug 2022 (9 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Oversaw the management of various digital products within our ecosystem, the one we developed internally and from partners.</li>
@@ -142,10 +142,10 @@ export default function About (): JSX.Element {
                 <div className='mb-6'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Electronic Platform Specialist</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
                       <p className='text-gray-600'>Mar 2019 - Dec 2021 (2 years 10 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Led the development of an automated integration system in close collaboration with the development team, streamlining the process of receiving and validating product data from sellers on the platform.</li>
@@ -159,10 +159,10 @@ export default function About (): JSX.Element {
                 <div className='mb-12'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Data Entry Specialist</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Outsource</p>
                       <p className='text-gray-600'>May 2015 - Mar 2019 (3 years 11 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Ensured data accuracy and quality control for the e-commerce platform through meticulous review and verification of product information, including images, measurements, descriptions, and links.</li>

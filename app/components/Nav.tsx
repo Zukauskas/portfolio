@@ -42,8 +42,8 @@ export default function Nav (): JSX.Element {
           <span className='sr-only'>About me</span>
         </Link>
         <Link
-          className='inline-flex flex-col items-center text-xs font-medium text-blue-400 hover:text-white py-3 px-4 flex-grow'
-          href='#'
+          className={`inline-flex flex-col items-center text-xs font-medium ${pathName === '/projects' ? 'text-white' : 'text-blue-400'} hover:text-white py-3 px-4 flex-grow`}
+          href='/projects'
         >
           <svg
             className='w-7 h-7'
