@@ -125,10 +125,10 @@ export default function About (): JSX.Element {
                 <div className='mb-6'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Digital Product Manager</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
                       <p className='text-gray-600'>Dec 2021 - Aug 2022 (9 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Oversaw the management of various digital products within our ecosystem, the one we developed internally and from partners.</li>
@@ -142,10 +142,10 @@ export default function About (): JSX.Element {
                 <div className='mb-6'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Electronic Platform Specialist</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Support</p>
                       <p className='text-gray-600'>Mar 2019 - Dec 2021 (2 years 10 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Led the development of an automated integration system in close collaboration with the development team, streamlining the process of receiving and validating product data from sellers on the platform.</li>
@@ -159,10 +159,10 @@ export default function About (): JSX.Element {
                 <div className='mb-12'>
                   <div className='flex flex-col justify-between mb-4'>
                     <p className='text-gray-600 font-bold'>Data Entry Specialist</p>
-                    <p>
+                    <div>
                       <p className='text-gray-600 mr-2'>at Nordic-Baltic Outsource</p>
                       <p className='text-gray-600'>May 2015 - Mar 2019 (3 years 11 months)</p>
-                    </p>
+                    </div>
                   </div>
                   <ul className='list-disc pl-8'>
                     <li>Ensured data accuracy and quality control for the e-commerce platform through meticulous review and verification of product information, including images, measurements, descriptions, and links.</li>
