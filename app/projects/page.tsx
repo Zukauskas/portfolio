@@ -2,9 +2,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import RepoCard from '../components/RepoCard'
 
 export default function About (): JSX.Element {
   const [repos, setRepos] = useState([])
+  const repoList: string[] = ['portfolio', 'only-fund', 'bankas', 'portfolio-v1']
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -17,11 +19,12 @@ export default function About (): JSX.Element {
       }
     }
 
-    fetchData()
+    void fetchData()
   }, [])
 
-  console.log(repos)
+  const filteredRepos = repos.filter(repo => repoList.includes(repo.name))
 
+  console.log(filteredRepos)
   return (
     <>
       <main>
@@ -32,7 +35,11 @@ export default function About (): JSX.Element {
               <p className='text-xl md:text-2xl text-[#44475a] font-bold z-10'>Projects</p>
               <Link className=' absolute right-3' href='/'>X</Link>
             </div>
-
+            <div className='flex'>
+              {filteredRepos.map(repo => {
+                return <RepoCard key={repo.id} repo={repo} />
+              })}
+            </div>
           </div>
         </div>
 
