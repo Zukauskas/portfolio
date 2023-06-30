@@ -4,15 +4,24 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import RepoCard from '../components/RepoCard'
 
+interface Repository {
+  id: number
+  name: string
+  full_name: string
+  description: string
+  html_url: string
+  language: string
+}
+
 export default function About (): JSX.Element {
-  const [repos, setRepos] = useState([])
+  const [repos, setRepos] = useState<Repository[]>([])
   const repoList: string[] = ['portfolio', 'only-fund', 'bankas', 'portfolio-v1']
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
         const response = await fetch('https://api.github.com/users/zukauskas/repos')
-        const data = await response.json()
+        const data: Repository[] = await response.json()
         setRepos(data)
       } catch (error) {
         console.error('Error retrieving repositories:', error)
@@ -22,9 +31,8 @@ export default function About (): JSX.Element {
     void fetchData()
   }, [])
 
-  const filteredRepos = repos.filter(repo => repoList.includes(repo.name))
+  const filteredRepos = repos.filter(repo => repoList.includes(repo.name)).sort((a, b) => b.id - a.id)
 
-  console.log(filteredRepos)
   return (
     <>
       <main>
@@ -35,10 +43,15 @@ export default function About (): JSX.Element {
               <p className='text-xl md:text-2xl text-[#44475a] font-bold z-10'>Projects</p>
               <Link className=' absolute right-3' href='/'>X</Link>
             </div>
-            <div className='flex'>
-              {filteredRepos.map(repo => {
-                return <RepoCard key={repo.id} repo={repo} />
-              })}
+            <div className='flex flex-col m-auto w-8/12 gap-10'>
+              <p className='text-xl text-[#44475a] font-bold mt-10 text-justify z-10'>
+                Welcome to the professional portfolio of a talented junior developer on the path to success! As a budding professional in the realm of software development and IT, I am passionately dedicated to expanding my knowledge and honing my skills. This carefully curated collection of projects showcases my commitment to continuous learning and growth.
+              </p>
+              <div className='grid grid-cols-2 gap-4'>
+                {filteredRepos.map((repo) => (
+                  <RepoCard key={repo.id} repo={repo} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
