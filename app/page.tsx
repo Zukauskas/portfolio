@@ -13,12 +13,9 @@ export default function Home(): JSX.Element {
                         height="1080"
                     />
                     <div className="z-10 bg-black/50 pt-12 pb-12 pl-6 pr-6">
-                        <h1 className="text-3xl md:text-5xl text-white font-bold mb-8">
+                        <h1 className="text-5xl md:text-5xmb-8 animate-typingTitle overflow-hidden whitespace-nowrap pr-5 text-white font-bold">
                             Hi, my name is Tautvydas Žukauskas
                         </h1>
-                        <p className="text-4xl text-white text-center">
-                            And I am a web developer!
-                        </p>
                     </div>
                 </div>
             </main>
