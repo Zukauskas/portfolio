@@ -12,8 +12,8 @@ export default function Blog(): JSX.Element {
                         width="1920"
                         height="1080"
                     />
-                    <div className="z-10 bg-black/50 pt-12 pb-12 pl-6 pr-6">
-                        <h1 className="text-5xl md:text-5xl text-white font-bold">
+                    <div className="z-10 bg-black/50 py-6 px-2">
+                        <h1 className="text-md md:text-5xl md:py-12 md:px-6 animate-typingTitle overflow-hidden whitespace-nowrap text-white font-bold">
                             Blog will be coming soon!!!
                         </h1>
                     </div>
