@@ -1,4 +1,5 @@
 import Image from "next/image";
+import code from "../public/bg-image.jpg";
 
 export default function Home(): JSX.Element {
     return (
@@ -7,13 +8,13 @@ export default function Home(): JSX.Element {
                 <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4 pb-20">
                     <Image
                         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
-                        src="/bg-image.jpg"
+                        src={code}
                         alt="image with programming code"
-                        width="1920"
-                        height="1080"
+                        fill
+                        sizes="100vw"
                     />
-                    <div className="z-10 bg-black/50 py-6 px-2">
-                        <h1 className="text-md md:text-5xl md:py-12 md:px-6 animate-typingTitle overflow-hidden whitespace-nowrap text-white font-bold">
+                    <div className="z-10 bg-black/50 py-6 px-2 flex">
+                        <h1 className="text-2xl sm:text-3xl md:text-5xl sm:py-12 sm:px-6 sm:animate-typingTitle sm:overflow-hidden sm:whitespace-nowrap text-white font-bold">
                             Hi, my name is Tautvydas Žukauskas
                         </h1>
                     </div>
