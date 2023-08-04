@@ -41,6 +41,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/react-scroll": "^1.8.10"
+    "@types/react-scroll": "^1.8.10",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "^0.4.1"
   }
 }
