@@ -19,7 +19,8 @@ export default function About(): JSX.Element {
     "portfolio",
     "only-fund",
     "bankas",
-    "portfolio-v1",
+    "my-weather-app",
+    "todo-app",
   ];
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function About(): JSX.Element {
 
   const filteredRepos = repos
     .filter((repo) => repoList.includes(repo.name))
-    .sort((a, b) => b.id - a.id);
+    .sort((a, b) => a.id - b.id);
 
   return (
     <>
