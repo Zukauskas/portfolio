@@ -45,11 +45,11 @@ export default function Nav(): JSX.Element {
           </svg>
           <span className="sr-only">About me</span>
         </Link>
-        <Link
+        <a
           className={`inline-flex flex-col items-center text-xs font-medium ${
             pathName === "/projects" ? "text-white" : "text-blue-400"
           } flex-grow px-4 py-3 pt-4 hover:text-white`}
-          href="/projects"
+          href="#projects"
         >
           <svg
             className="h-6 w-6"
@@ -64,7 +64,7 @@ export default function Nav(): JSX.Element {
             />
           </svg>
           <span className="sr-only">Projects</span>
-        </Link>
+        </a>
         <Link
           className={`inline-flex flex-col items-center text-xs font-medium ${
             pathName === "/blog" ? "text-white" : "text-blue-400"
