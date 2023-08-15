@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import RepoCard from "../components/RepoCard";
+import RepoCard from "./RepoCard";
 
 interface Repository {
   id: number;
@@ -13,7 +13,7 @@ interface Repository {
   language: string;
 }
 
-export default function About(): JSX.Element {
+export default function Projects(): JSX.Element {
   const [repos, setRepos] = useState<Repository[]>([]);
   const repoList: string[] = [
     "portfolio",
