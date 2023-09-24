@@ -4,7 +4,10 @@ export default function About(): JSX.Element {
   return (
     <>
       <div className=" bg-[#f8f8f2]">
-        <h2 className="text-xl font-bold text-[#44475a] md:text-2xl">
+        <h2
+          id="about-me"
+          className="text-xl font-bold text-[#44475a] md:text-2xl"
+        >
           About Me
         </h2>
         <div className="flex flex-col gap-6 px-4 lg:flex-row">
