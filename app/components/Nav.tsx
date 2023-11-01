@@ -5,7 +5,7 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
+  Button
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 
