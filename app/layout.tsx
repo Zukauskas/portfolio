@@ -2,7 +2,7 @@ import "./globals.css";
 import React from "react";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import "primereact/resources/themes/viva-dark/theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
