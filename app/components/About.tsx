@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 
 export default function About(): JSX.Element {
   return (
@@ -257,7 +258,12 @@ export default function About(): JSX.Element {
             <div className="mb-6">
               <div className="mb-4 flex flex-col justify-between">
                 <p className="font-bold text-gray-600">
-                  Digital Product Manager
+                  Digital Product Manager(
+                  <div>
+                    <p>Welcome to my website!</p>
+                    <p>Available commands are date, greet, random and clear</p>
+                  </div>
+                  );
                 </p>
                 <div>
                   <p className="mr-2 text-gray-600">at Nordic-Baltic Support</p>

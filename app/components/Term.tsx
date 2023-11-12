@@ -2,10 +2,11 @@
 import { Terminal } from "primereact/terminal";
 import { TerminalService } from "primereact/terminalservice";
 import { useEffect } from "react";
+import About from "./About";
+import Projects from "./Projects";
 
 export default function Term(): JSX.Element {
-  const welcomeMessage =
-    "Welcome to Zukauskas.dev (Type 'help' for all commands)";
+  const welcomeMessage = `Hello, welcome to my website!`;
 
   const commandHandler = (text: string) => {
     let response;
@@ -13,27 +14,24 @@ export default function Term(): JSX.Element {
     let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
 
     switch (command) {
-      case "date":
-        response = "Today is " + new Date().toDateString();
+      case "AboutMe":
+        response = <About />;
         break;
 
-      case "greet":
-        response = "Hello " + text.substring(argsIndex + 1) + "!";
-        break;
-
-      case "random":
-        response = Math.floor(Math.random() * 100);
+      case "Projects":
+        response = <Projects />;
         break;
 
       case "clear":
         response = null;
         break;
+
       case "help":
-        response = " Available commands are date, greet, random and clear";
+        response = "Available commands are AboutMe, Projects, clear and help";
         break;
 
       default:
-        response = "Unknown command: " + command;
+        response = `Unknown command: ${command}`;
         break;
     }
 
