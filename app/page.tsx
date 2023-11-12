@@ -1,15 +1,9 @@
-import About from "./components/About";
-import Hero from "./components/Hero";
-import Nav from "./components/Nav";
-import Projects from "./components/Projects";
+import Term from "./components/Term";
 
 export default function Home(): JSX.Element {
   return (
     <>
-      <Nav />
-      <Hero />
-      <About />
-      <Projects />
+      <Term />
     </>
   );
 }

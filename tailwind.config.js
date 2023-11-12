@@ -1,23 +1,7 @@
-const { nextui } = require("@nextui-org/react");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
     extend: {
-      keyframes: {
-        typingTitle: {
-          "0%": {
-            width: "0%",
-            visibility: "hidden",
-          },
-          "100%": {
-            width: "100%",
-          },
-        },
-      },
-      animation: {
-        typingTitle: "typingTitle 2s steps(20)",
-      },
     },
   },
   content: [
@@ -27,5 +11,5 @@ module.exports = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [],
 };
