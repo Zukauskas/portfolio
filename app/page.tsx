@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
                     />
                     <div className="z-10 bg-black/50 py-6 px-2">
                         <h1 className="text-md md:text-5xl md:py-12 md:px-6 animate-typingTitle overflow-hidden whitespace-nowrap text-white font-bold">
-                            Hi, my name is Tautvydas Žukauskas
+                            Sorry, reworking the website, please come back later.
                         </h1>
                     </div>
                 </div>
