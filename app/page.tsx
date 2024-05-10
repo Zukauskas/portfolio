@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Header from "./components/Header";
 
 export default function Home(): JSX.Element {
     return (
         <>
+            <Header />
             <main>
                 <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4 pb-20">
                     <Image
