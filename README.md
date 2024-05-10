@@ -7,5 +7,3 @@
 ### - TypeScript
 
 ### - TailwindCSS
-
-Coming soon
