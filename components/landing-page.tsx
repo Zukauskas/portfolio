@@ -66,7 +66,7 @@ export function LandingPage() {
                 </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   I have a diverse set of skills that allow me to create high-quality web applications. From front-end
-                  development to back-end integration, I'm proficient in the latest technologies and frameworks.
+                  development to back-end integration, I&apos;m proficient in the latest technologies and frameworks.
                 </p>
               </div>
             </div>
@@ -103,8 +103,8 @@ export function LandingPage() {
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Showcasing My Work</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
-                  Take a look at some of the web applications and projects I've worked on. These showcase my skills and
-                  the diverse range of technologies I've mastered.
+                  Take a look at some of the web applications and projects I&apos;ve worked on. These showcase my skills and
+                  the diverse range of technologies I&apos;ve mastered.
                 </p>
               </div>
             </div>
@@ -185,10 +185,10 @@ export function LandingPage() {
                 <div className="inline-block px-3 py-1 text-sm bg-gray-100 rounded-lg">
                   Get in Touch
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Let's Collaborate</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Let&apos;s Collaborate</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
-                  I'm always excited to work on new projects and connect with fellow developers. Feel free to reach out
-                  to me using the form below, and I'll get back to you as soon as possible.
+                  I&apos;m always excited to work on new projects and connect with fellow developers. Feel free to reach out
+                  to me using the form below, and I&apos;ll get back to you as soon as possible.
                 </p>
               </div>
               <div className="mx-auto space-y-2 w-full max-w-sm">
