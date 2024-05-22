@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* Add the CSS code for the mouse icon here */
+html {
+  scroll-behavior: smooth;
+}
 
 .mouse-icon {
   position: absolute;
