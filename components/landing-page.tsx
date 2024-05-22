@@ -4,7 +4,8 @@
 * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
 */
 
-import Link from "next/link"
+import { Link as ScrollLink, Element } from 'react-scroll'
+import Link from 'next/link'
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -18,15 +19,31 @@ export function LandingPage() {
           <span className="sr-only">Zukauskas.dev Portfolio</span>
         </Link>
         <nav className="flex gap-4 ml-auto sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <ScrollLink activeClass="active"
+            to="skills"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            className="text-sm font-medium hover:underline underline-offset-4">
             Skills
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          </ScrollLink>
+          <ScrollLink activeClass="active"
+            to="skills"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500} className="text-sm font-medium hover:underline underline-offset-4" href="#">
             Projects
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          </ScrollLink>
+          <ScrollLink activeClass="active"
+            to="skills"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500} className="text-sm font-medium hover:underline underline-offset-4" href="#">
             Contact
-          </Link>
+          </ScrollLink>
         </nav>
       </header>
       <main className="flex-1">
@@ -44,44 +61,46 @@ export function LandingPage() {
             <div className="mouse-icon"></div>
           </div>
         </section>
-        <section className="py-12 w-full bg-gray-100 md:py-24 lg:py-32" id="skills">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col justify-center items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block px-3 py-1 text-sm bg-gray-100 rounded-lg">My Skills</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Expertise and Capabilities
-                </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I have a diverse set of skills that allow me to create high-quality web applications. From front-end
-                  development to back-end integration, I'm proficient in the latest technologies and frameworks.
-                </p>
+        <Element name="skills">
+          <section className="py-12 w-full bg-gray-100 md:py-24 lg:py-32" id="skills">
+            <div className="container px-4 md:px-6">
+              <div className="flex flex-col justify-center items-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <div className="inline-block px-3 py-1 text-sm bg-gray-100 rounded-lg">My Skills</div>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                    Expertise and Capabilities
+                  </h2>
+                  <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    I have a diverse set of skills that allow me to create high-quality web applications. From front-end
+                    development to back-end integration, I'm proficient in the latest technologies and frameworks.
+                  </p>
+                </div>
+              </div>
+              <div className="grid gap-6 items-center py-12 mx-auto max-w-5xl lg:grid-cols-3 lg:gap-12">
+                <div className="grid gap-1">
+                  <h3 className="text-xl font-bold">Front-end Development</h3>
+                  <p className="text-gray-500 d">
+                    Expertise in HTML, CSS, JavaScript, and modern front-end frameworks like React, Vue, and Angular.
+                  </p>
+                </div>
+                <div className="grid gap-1">
+                  <h3 className="text-xl font-bold">Back-end Development</h3>
+                  <p className="text-gray-500">
+                    Proficient in server-side technologies such as Node.js, Python, and PHP, with experience in building
+                    RESTful APIs and integrating databases.
+                  </p>
+                </div>
+                <div className="grid gap-1">
+                  <h3 className="text-xl font-bold">UI/UX Design</h3>
+                  <p className="text-gray-500">
+                    Skilled in creating visually appealing and user-friendly interfaces, with a keen eye for design and a
+                    focus on accessibility.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="grid gap-6 items-center py-12 mx-auto max-w-5xl lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">Front-end Development</h3>
-                <p className="text-gray-500 d">
-                  Expertise in HTML, CSS, JavaScript, and modern front-end frameworks like React, Vue, and Angular.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">Back-end Development</h3>
-                <p className="text-gray-500">
-                  Proficient in server-side technologies such as Node.js, Python, and PHP, with experience in building
-                  RESTful APIs and integrating databases.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">UI/UX Design</h3>
-                <p className="text-gray-500">
-                  Skilled in creating visually appealing and user-friendly interfaces, with a keen eye for design and a
-                  focus on accessibility.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </Element>
         <section className="py-12 w-full md:py-24 lg:py-32" id="projects">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col justify-center items-center space-y-4 text-center">
