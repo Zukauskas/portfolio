@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Terminal.css";
 
-const Terminal = ({ messages }) => {
-  const [displayedMessages, setDisplayedMessages] = useState([]);
+const Terminal = ({ messages }: { messages: string[] }) => {
+  const [displayedMessages, setDisplayedMessages] = useState<string[]>([]);
 
 
   useEffect(() => {
@@ -11,10 +11,10 @@ const Terminal = ({ messages }) => {
 
     const typeNextCharacter = () => {
       if (currentMessageIndex >= messages.length) {
-        return; // Stop if all messages are displayed
+        return;
       }
       const message = messages[currentMessageIndex];
-      setDisplayedMessages((prevMessages) => [
+      setDisplayedMessages((prevMessages: string[]) => [
         ...prevMessages.slice(0, currentMessageIndex),
         message.substring(0, currentIndex + 1),
       ]);
@@ -23,7 +23,7 @@ const Terminal = ({ messages }) => {
       if (currentIndex === message.length) {
         currentIndex = 0;
         currentMessageIndex++;
-        setTimeout(typeNextCharacter, 1000); // Delay before next message
+        setTimeout(typeNextCharacter, 1000); // Delay before next messagef
         return;
       }
 
