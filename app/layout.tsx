@@ -15,7 +15,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={`${inter.className} font-orbitron`}>{children}</body>
+      <body className={`${inter.className} font-vt323`}>{children}</body>
     </html>
   );
 }

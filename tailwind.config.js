@@ -7,9 +7,13 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'orbitron': ["Orbitron", "sans-serif"],
+      'vt323': ["VT323", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "desktop": "url('/bg-image.jpg')",
+      },
+    },
   },
   plugins: [],
 };

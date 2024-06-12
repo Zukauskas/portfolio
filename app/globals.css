@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: 'Orbitron';
-        src: url(Orbitron-VariableFont_wght.ttf) format('truetype');
-    }
+ @font-face {
+    font-family: 'vt323';
+    src: url('/VT323-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+ }
 }
