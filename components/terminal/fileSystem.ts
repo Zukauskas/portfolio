@@ -89,10 +89,10 @@ A real-time weather application using OpenWeatherMap API.
 
 [View Project](https://github.com/yourusername/weather-app)`
                 },
-                'portfolio-terminal.md': { 
-                  name: 'portfolio-terminal.md', 
+                'portfolio.md': { 
+                  name: 'portfolio.md', 
                   type: 'file', 
-                  content: `# Portfolio Terminal
+                  content: `# Portfolio
 
 ## Description
 An interactive terminal-style portfolio (you are here!).
@@ -119,11 +119,11 @@ An interactive terminal-style portfolio (you are here!).
 - Implement a simple game or Easter egg
 - Create a "GUI" version toggle
 
-[View Project](https://github.com/yourusername/portfolio-terminal)`
+[View Project](https://github.com/zukauskas/portfolio)`
                 }
               }
             },
-            'contact.txt': { name: 'contact.txt', type: 'file', content: 'Email: developer@zukauskas.dev | GitHub: github.com/yourusername' },
+            'contact.txt': { name: 'contact.txt', type: 'file', content: 'Email: tautzuk@tutanota.com | GitHub: github.com/zukauskas' },
           }
         }
       }
