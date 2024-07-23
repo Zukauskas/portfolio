@@ -4,12 +4,13 @@ import { Terminal } from 'lucide-react';
 import { processCommand } from './commands';
 import { BootMessage } from './types';
 import { bootMessages } from './bootSequence';
+import ReactMarkdown from 'react-markdown';
 
 const TerminalPortfolio: React.FC = () => {
   const [bootComplete, setBootComplete] = useState(false);
   const [currentBootMessage, setCurrentBootMessage] = useState(0);
   const [input, setInput] = useState('');
-  const [output, setOutput] = useState<string[]>([]);
+  const [output, setOutput] = useState<(string | string[])[]>([]);
   const [currentDirectory, setCurrentDirectory] = useState<string[]>(['home', 'guest']);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -75,7 +76,7 @@ const TerminalPortfolio: React.FC = () => {
       if (newDirectory) {
         setCurrentDirectory(newDirectory);
       }
-      if (commandOutput === 'CLEAR') {
+      if (Array.isArray(commandOutput) && commandOutput[0] === 'CLEAR') {
         setOutput([]);
       }
       playSound('execute');
@@ -110,7 +111,7 @@ const TerminalPortfolio: React.FC = () => {
     if (newDirectory) {
       setCurrentDirectory(newDirectory);
     }
-    if (commandOutput === 'CLEAR') {
+    if (Array.isArray(commandOutput) && commandOutput[0] === 'CLEAR') {
       setOutput([]);
     }
     playSound('execute');
@@ -145,7 +146,17 @@ const TerminalPortfolio: React.FC = () => {
               </div>
               <div className="mb-4">
                 {output.map((line, index) => (
-                  <div key={index}>{line}</div>
+                  <div key={index}>
+                    {Array.isArray(line) && line[0] === 'MARKDOWN' ? (
+                      <ReactMarkdown className="markdown prose prose-invert">{line[1]}</ReactMarkdown>
+                    ) : Array.isArray(line) ? (
+                      <pre className="whitespace-pre-wrap font-mono text-sm">
+                        {line.join('\n')}
+                      </pre>
+                    ) : (
+                      line
+                    )}
+                  </div>
                 ))}
                 <div ref={outputEndRef} />
               </div>
@@ -168,31 +179,31 @@ const TerminalPortfolio: React.FC = () => {
       </div>
       {bootComplete && (
         <div className="flex justify-between border-t border-gray-700 p-2 bg-black">
-          <button 
+          <button
             onClick={() => simulateCommand('about')}
             className="text-gray-300 hover:text-white focus:outline-none"
           >
             About
           </button>
-          <button 
+          <button
             onClick={() => simulateCommand('skills')}
             className="text-gray-300 hover:text-white focus:outline-none"
           >
             Skills
           </button>
-          <button 
+          <button
             onClick={() => simulateCommand('projects')}
             className="text-gray-300 hover:text-white focus:outline-none"
           >
             Projects
           </button>
-          <button 
+          <button
             onClick={() => simulateCommand('contact')}
             className="text-gray-300 hover:text-white focus:outline-none"
           >
             Contact
           </button>
-          <button 
+          <button
             onClick={() => simulateCommand('help')}
             className="text-gray-300 hover:text-white focus:outline-none"
           >
