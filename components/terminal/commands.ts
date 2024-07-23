@@ -1,14 +1,64 @@
 import { getFileOrDirectory } from './fileSystem';
 import { CommandResponse, File, Directory } from './types';
 
+const generateHelpManPage = (): string[] => {
+  return [
+    "PORTFOLIO(1)                   User Commands                   PORTFOLIO(1)",
+    "",
+    "NAME",
+    "       portfolio - interactive developer portfolio terminal",
+    "",
+    "SYNOPSIS",
+    "       [command] [arguments]",
+    "",
+    "DESCRIPTION",
+    "       This interactive terminal allows you to explore the developer's",
+    "       portfolio, skills, and projects.",
+    "",
+    "COMMANDS",
+    "       about     Display information about the developer",
+    "       skills    List the developer's technical skills",
+    "       projects  Show a list of the developer's projects",
+    "       contact   Display contact information",
+    "       ls        List directory contents",
+    "       cd        Change the current directory",
+    "       cat       Display file contents",
+    "       pwd       Print name of current/working directory",
+    "       echo      Display a line of text",
+    "       clear     Clear the terminal screen",
+    "       help      Display this help information",
+    "",
+    "EXAMPLES",
+    "       skills",
+    "              Lists the developer's technical skills.",
+    "",
+    "       cat about.txt",
+    "              Displays the contents of the about.txt file.",
+    "",
+    "       cd projects",
+    "              Changes the current directory to 'projects'.",
+    "",
+    "AUTHOR",
+    "       Your Name <your.email@example.com>",
+    "",
+    "COPYRIGHT",
+    "       Copyright © 2023 Your Name. All rights reserved.",
+    "",
+    "SEE ALSO",
+    "       https://your-portfolio-website.com",
+    "",
+    "Portfolio Terminal                  July 2023                   PORTFOLIO(1)"
+  ];
+};
+
 export const processCommand = (cmd: string, currentDirectory: string[]): CommandResponse => {
   const [command, ...args] = cmd.split(' ');
-  let output: string;
+  let output: string[] | string;
   let newDirectory = currentDirectory;
 
   switch (command.toLowerCase()) {
     case 'help':
-      output = 'Available commands: about, skills, projects, contact, ls, cd, cat, pwd, echo, clear';
+      output = generateHelpManPage();
       break;
     case 'about':
       output = getFileOrDirectory([...currentDirectory, 'about.txt'])?.content || 'File not found';
@@ -60,7 +110,11 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
       if (args[0]) {
         const file = getFileOrDirectory([...currentDirectory, args[0]]);
         if (file && file.type === 'file') {
-          output = file.content;
+          if (args[0].endsWith('.md')) {
+            output = ['MARKDOWN', file.content];
+          } else {
+            output = file.content;
+          }
         } else {
           output = 'File not found';
         }

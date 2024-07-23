@@ -22,9 +22,105 @@ export const fileSystem: Directory = {
               type: 'directory',
               content: '',
               children: {
-                'project1.md': { name: 'project1.md', type: 'file', content: '# E-commerce Site\n\nA full-stack e-commerce solution built with React and Node.js.' },
-                'project2.md': { name: 'project2.md', type: 'file', content: '# Weather App\n\nA real-time weather application using OpenWeatherMap API.' },
-                'project3.md': { name: 'project3.md', type: 'file', content: '# Portfolio Terminal\n\nAn interactive terminal-style portfolio (you are here!).' },
+                'e-commerce-site.md': { 
+                  name: 'e-commerce-site.md', 
+                  type: 'file', 
+                  content: `# E-commerce Site
+
+## Description
+A full-stack e-commerce solution built with React and Node.js.
+
+## Technologies Used
+- React
+- Node.js
+- Express
+- MongoDB
+- Redux
+- Stripe API
+
+## Features
+- User authentication
+- Product catalog
+- Shopping cart
+- Secure checkout process
+- Order history
+
+## Challenges Overcome
+- Implementing real-time inventory updates
+- Ensuring secure payment processing
+- Optimizing database queries for large product catalogs
+
+## Future Improvements
+- Add product reviews and ratings
+- Implement a recommendation system
+- Develop a mobile app version
+
+[View Project](https://github.com/yourusername/e-commerce-site)`
+                },
+                'weather-app.md': { 
+                  name: 'weather-app.md', 
+                  type: 'file', 
+                  content: `# Weather App
+
+## Description
+A real-time weather application using OpenWeatherMap API.
+
+## Technologies Used
+- React
+- OpenWeatherMap API
+- Axios
+- CSS Modules
+
+## Features
+- Current weather display
+- 5-day forecast
+- Location search
+- Responsive design
+
+## Challenges Overcome
+- Managing API rate limits
+- Implementing efficient data caching
+- Creating an intuitive user interface
+
+## Future Improvements
+- Add weather maps
+- Implement geolocation
+- Add severe weather alerts
+
+[View Project](https://github.com/yourusername/weather-app)`
+                },
+                'portfolio-terminal.md': { 
+                  name: 'portfolio-terminal.md', 
+                  type: 'file', 
+                  content: `# Portfolio Terminal
+
+## Description
+An interactive terminal-style portfolio (you are here!).
+
+## Technologies Used
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
+
+## Features
+- Simulated file system
+- Custom command processing
+- Markdown rendering
+- Responsive design
+
+## Challenges Overcome
+- Implementing a virtual file system
+- Creating an authentic terminal experience
+- Balancing authenticity with user-friendliness
+
+## Future Improvements
+- Add more interactive elements
+- Implement a simple game or Easter egg
+- Create a "GUI" version toggle
+
+[View Project](https://github.com/yourusername/portfolio-terminal)`
+                }
               }
             },
             'contact.txt': { name: 'contact.txt', type: 'file', content: 'Email: developer@zukauskas.dev | GitHub: github.com/yourusername' },
