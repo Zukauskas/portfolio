@@ -10,7 +10,7 @@ const TerminalPortfolio: React.FC = () => {
   const [bootComplete, setBootComplete] = useState(false);
   const [currentBootMessage, setCurrentBootMessage] = useState(0);
   const [input, setInput] = useState('');
-  const [output, setOutput] = useState<(string | string[])[]>([]);
+  const [output, setOutput] = useState<(string | string[])[]>([])
   const [currentDirectory, setCurrentDirectory] = useState<string[]>(['home', 'guest']);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -69,18 +69,38 @@ const TerminalPortfolio: React.FC = () => {
     e.preventDefault();
     if (input.trim()) {
       const { output: commandOutput, newDirectory } = processCommand(input, currentDirectory);
-      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${input}`, commandOutput]);
+      if (commandOutput === null) {
+        // Clear the screen
+        setOutput([]);
+      } else {
+        setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${input}`, commandOutput]);
+      }
       setCommandHistory(prev => [...prev, input]);
       setHistoryIndex(-1);
       setInput('');
       if (newDirectory) {
         setCurrentDirectory(newDirectory);
       }
-      if (Array.isArray(commandOutput) && commandOutput[0] === 'CLEAR') {
-        setOutput([]);
-      }
       playSound('execute');
     }
+  };
+
+  const simulateCommand = (command: string) => {
+    setInput(command);
+    const { output: commandOutput, newDirectory } = processCommand(command, currentDirectory);
+    if (commandOutput === null) {
+      // Clear the screen
+      setOutput([]);
+    } else {
+      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${command}`, commandOutput]);
+    }
+    setCommandHistory(prev => [...prev, command]);
+    setHistoryIndex(-1);
+    setInput('');
+    if (newDirectory) {
+      setCurrentDirectory(newDirectory);
+    }
+    playSound('execute');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -99,22 +119,6 @@ const TerminalPortfolio: React.FC = () => {
         return newIndex;
       });
     }
-  };
-
-  const simulateCommand = (command: string) => {
-    setInput(command);
-    const { output: commandOutput, newDirectory } = processCommand(command, currentDirectory);
-    setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${command}`, commandOutput]);
-    setCommandHistory(prev => [...prev, command]);
-    setHistoryIndex(-1);
-    setInput('');
-    if (newDirectory) {
-      setCurrentDirectory(newDirectory);
-    }
-    if (Array.isArray(commandOutput) && commandOutput[0] === 'CLEAR') {
-      setOutput([]);
-    }
-    playSound('execute');
   };
 
   return (
@@ -141,7 +145,7 @@ const TerminalPortfolio: React.FC = () => {
           ) : (
             <>
               <div className="mb-4">
-                <div>Welcome to the Developer Portfolio Terminal</div>
+                <div>Welcome to the Zukauskas.dev Portfolio Terminal</div>
                 <div>Type &apos;help&apos; for available commands or use the navigation below.</div>
               </div>
               <div className="mb-4">

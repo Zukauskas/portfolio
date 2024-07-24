@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Developer Portfolio Terminal</title>
+        <title>Zukauskas.dev Portfolio</title>
         <meta name="description" content="A terminal-style developer portfolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
