@@ -6,13 +6,13 @@ const generateHelpManPage = (): string[] => {
     "PORTFOLIO(1)                   User Commands                   PORTFOLIO(1)",
     "",
     "NAME",
-    "       portfolio - interactive developer portfolio terminal",
+    "       portfolio - interactive portfolio terminal",
     "",
     "SYNOPSIS",
     "       [command] [arguments]",
     "",
     "DESCRIPTION",
-    "       This interactive terminal allows you to explore the developer's",
+    "       This interactive terminal allows you to explore the",
     "       portfolio, skills, and projects.",
     "",
     "COMMANDS",
@@ -39,13 +39,13 @@ const generateHelpManPage = (): string[] => {
     "              Changes the current directory to 'projects'.",
     "",
     "AUTHOR",
-    "       Your Name <your.email@example.com>",
+    "       Tautvydas Z (tautzuk@tutanota.com)",
     "",
     "COPYRIGHT",
     "       Copyright © 2023 Your Name. All rights reserved.",
     "",
     "SEE ALSO",
-    "       https://your-portfolio-website.com",
+    "       https://zukauskas.dev",
     "",
     "Portfolio Terminal                  July 2023                   PORTFOLIO(1)"
   ];
@@ -53,7 +53,7 @@ const generateHelpManPage = (): string[] => {
 
 export const processCommand = (cmd: string, currentDirectory: string[]): CommandResponse => {
   const [command, ...args] = cmd.split(' ');
-  let output: string[] | string;
+  let output: string | string[] | null;
   let newDirectory = currentDirectory;
 
   switch (command.toLowerCase()) {
@@ -129,7 +129,7 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
       output = args.join(' ');
       break;
     case 'clear':
-      output = 'CLEAR';
+      output = null;
       break;
     default:
       output = `Command not found: ${command}. Type 'help' for available commands.`;

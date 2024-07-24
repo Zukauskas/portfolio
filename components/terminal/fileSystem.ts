@@ -15,7 +15,7 @@ export const fileSystem: Directory = {
           type: 'directory',
           content: '',
           children: {
-            'about.txt': { name: 'about.txt', type: 'file', content: 'I am a passionate developer with experience in web technologies.' },
+            'about.txt': { name: 'about.txt', type: 'file', content: 'I am a passionate developer with experience in web technologies and AI.' },
             'skills.txt': { name: 'skills.txt', type: 'file', content: 'JavaScript, TypeScript, React, Next.js, Node.js, Tailwind CSS' },
             'projects': {
               name: 'projects',
