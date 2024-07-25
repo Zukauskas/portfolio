@@ -1,4 +1,4 @@
-import TerminalPortfolio from '@/components/terminal/TerminalPortfolio';
+import TerminalPortfolio from '@/app/components/terminal/TerminalPortfolio';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
