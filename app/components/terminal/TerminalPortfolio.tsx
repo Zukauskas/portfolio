@@ -6,6 +6,7 @@ import { BootMessage } from './types';
 import { bootMessages } from './bootSequence';
 import ReactMarkdown from 'react-markdown';
 import GUIPortfolio from '../gui-portfolio/GUIPortfolio';
+import { loadProjectFiles } from './fileSystem';
 
 
 const TerminalPortfolio: React.FC = () => {
@@ -69,6 +70,10 @@ const TerminalPortfolio: React.FC = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
+  }, []);
+
+  useEffect(() => {
+    loadProjectFiles();
   }, []);
 
   const playSound = useCallback((soundType: 'type' | 'execute') => {
