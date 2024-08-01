@@ -6,7 +6,7 @@ import { BootMessage } from './types';
 import { bootMessages } from './bootSequence';
 import ReactMarkdown from 'react-markdown';
 import GUIPortfolio from '../gui-portfolio/GUIPortfolio';
-import { loadProjectFiles } from './fileSystem';
+import { loadAllFiles } from './fileSystem';
 
 
 const TerminalPortfolio: React.FC = () => {
@@ -73,7 +73,15 @@ const TerminalPortfolio: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    loadProjectFiles();
+    const initializeTerminal = async () => {
+      await loadAllFiles();
+      setOutput([
+        'Welcome to the Developer Portfolio Terminal',
+        'Type \'help\' for available commands or use the navigation below.'
+      ]);
+    };
+
+    initializeTerminal();
   }, []);
 
   const playSound = useCallback((soundType: 'type' | 'execute') => {

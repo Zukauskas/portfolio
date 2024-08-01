@@ -1,5 +1,5 @@
 import { getFileOrDirectory } from './fileSystem';
-import { CommandResponse, File, Directory } from './types';
+import { CommandResponse } from './types';
 
 const generateHelpManPage = (): string[] => {
   return [
@@ -42,12 +42,12 @@ const generateHelpManPage = (): string[] => {
     "       Tautvydas Z (tautzuk@tutanota.com)",
     "",
     "COPYRIGHT",
-    "       Copyright © 2023 Your Name. All rights reserved.",
+    "       Copyright © 2024 Tautvydas Z. All rights reserved.",
     "",
     "SEE ALSO",
     "       https://zukauskas.dev",
     "",
-    "Portfolio Terminal                  July 2023                   PORTFOLIO(1)"
+    "Portfolio Terminal                  July 2024                   PORTFOLIO(1)"
   ];
 };
 
@@ -106,22 +106,18 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
         output = 'Usage: cd <directory>';
       }
       break;
-    case 'cat':
-      if (args[0]) {
-        const file = getFileOrDirectory([...currentDirectory, args[0]]);
-        if (file && file.type === 'file') {
-          if (args[0].endsWith('.md')) {
+      case 'cat':
+        if (args[0]) {
+          const file = getFileOrDirectory([...currentDirectory, args[0]]);
+          if (file && file.type === 'file') {
             output = ['MARKDOWN', file.content];
           } else {
-            output = file.content;
+            output = 'File not found';
           }
         } else {
-          output = 'File not found';
+          output = 'Usage: cat <filename>';
         }
-      } else {
-        output = 'Usage: cat <filename>';
-      }
-      break;
+        break;
     case 'pwd':
       output = '/' + currentDirectory.join('/');
       break;

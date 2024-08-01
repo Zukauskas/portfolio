@@ -1,6 +1,6 @@
-import { Directory } from './types';
+import { localFile } from './types';
 
-export const fileSystem: Directory = {
+export const fileSystem: localFile = {
   name: '/',
   type: 'directory',
   content: '',
@@ -15,15 +15,15 @@ export const fileSystem: Directory = {
           type: 'directory',
           content: '',
           children: {
-            'about.txt': { name: 'about.txt', type: 'file', content: 'I am a passionate developer with experience in web technologies and AI.' },
-            'skills.txt': { name: 'skills.txt', type: 'file', content: 'JavaScript, TypeScript, React, Next.js, Node.js, Tailwind CSS' },
+            'about.md': { name: 'about.md', type: 'file', content: '' },
+            'skills.md': { name: 'skills.md', type: 'file', content: '' },
+            'contact.md': { name: 'contact.md', type: 'file', content: '' }, // Note: it's 'contact.md', not 'contacts.md'
             'projects': {
               name: 'projects',
               type: 'directory',
               content: '',
               children: {} // This will be populated dynamically
-            },
-            'contact.txt': { name: 'contact.txt', type: 'file', content: 'Email: tautzuk@tutanota.com | GitHub: github.com/zukauskas' },
+            }
           }
         }
       }
@@ -31,10 +31,10 @@ export const fileSystem: Directory = {
   }
 };
 
-export const getFileOrDirectory = (path: string[]): File | Directory | null => {
-  let current: File | Directory = fileSystem;
+export const getFileOrDirectory = (path: string[]): localFile | null => {
+  let current: localFile = fileSystem;
   for (const segment of path) {
-    if (current.type === 'directory' && segment in current.children) {
+    if (current.type === 'directory' && current.children && segment in current.children) {
       current = current.children[segment];
     } else {
       return null;
@@ -43,7 +43,18 @@ export const getFileOrDirectory = (path: string[]): File | Directory | null => {
   return current;
 };
 
-export async function loadProjectFiles() {
-  const projectFiles = await import('../../projects/projectData.json');
-  fileSystem.children.home.children.guest.children.projects.children = projectFiles;
+export async function loadAllFiles() {
+  try {
+    const projectFiles = await import('../../projects/projectData.json');
+    const aboutContent = await import('../../content/about.md');
+    const skillsContent = await import('../../content/skills.md');
+    const contactContent = await import('../../content/contact.md');
+
+    fileSystem.children.home.children.guest.children.projects.children = projectFiles;
+    fileSystem.children.home.children.guest.children['about.md'].content = aboutContent.default;
+    fileSystem.children.home.children.guest.children['skills.md'].content = skillsContent.default;
+    fileSystem.children.home.children.guest.children['contact.md'].content = contactContent.default;
+  } catch (error) {
+    console.error("Error loading files:", error);
+  }
 }

@@ -19,10 +19,10 @@ An interactive terminal-style portfolio (you are here!).
 - Implementing a virtual file system
 - Creating an authentic terminal experience
 - Balancing authenticity with user-friendliness
+- Create a "GUI" version toggle
 
 ## Future Improvements
 - Add more interactive elements
 - Implement a simple game or Easter egg
-- Create a "GUI" version toggle
 
-[View Project](https://github.com/zukauskas/portfolio)`
+[View Project](https://github.com/zukauskas/portfolio)

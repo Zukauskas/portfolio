@@ -2,6 +2,6 @@
   "portfolio.md": {
     "name": "portfolio.md",
     "type": "file",
-    "content": "# Portfolio\n\n## Description\nAn interactive terminal-style portfolio (you are here!).\n\n## Technologies Used\n- React\n- Next.js\n- TypeScript\n- Tailwind CSS\n\n## Features\n- Simulated file system\n- Custom command processing\n- Markdown rendering\n- Responsive design\n\n## Challenges Overcome\n- Implementing a virtual file system\n- Creating an authentic terminal experience\n- Balancing authenticity with user-friendliness\n\n## Future Improvements\n- Add more interactive elements\n- Implement a simple game or Easter egg\n- Create a \"GUI\" version toggle\n\n[View Project](https://github.com/zukauskas/portfolio)`"
+    "content": "# Portfolio\n\n## Description\nAn interactive terminal-style portfolio (you are here!).\n\n## Technologies Used\n- React\n- Next.js\n- TypeScript\n- Tailwind CSS\n\n## Features\n- Simulated file system\n- Custom command processing\n- Markdown rendering\n- Responsive design\n\n## Challenges Overcome\n- Implementing a virtual file system\n- Creating an authentic terminal experience\n- Balancing authenticity with user-friendliness\n- Create a \"GUI\" version toggle\n\n## Future Improvements\n- Add more interactive elements\n- Implement a simple game or Easter egg\n\n[View Project](https://github.com/zukauskas/portfolio)`"
   }
 }
