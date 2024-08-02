@@ -60,26 +60,10 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
     case 'help':
       output = generateHelpManPage();
       break;
-    case 'about':
-      output = getFileOrDirectory([...currentDirectory, 'about.txt'])?.content || 'File not found';
-      break;
-    case 'skills':
-      output = getFileOrDirectory([...currentDirectory, 'skills.txt'])?.content || 'File not found';
-      break;
-    case 'projects':
-      const projects = getFileOrDirectory([...currentDirectory, 'projects']);
-      if (projects && projects.type === 'directory') {
-        output = Object.keys(projects.children).join('\n');
-      } else {
-        output = 'Projects directory not found';
-      }
-      break;
-    case 'contact':
-      output = getFileOrDirectory([...currentDirectory, 'contact.txt'])?.content || 'File not found';
-      break;
     case 'ls':
       const dir = getFileOrDirectory(currentDirectory);
       if (dir && dir.type === 'directory') {
+         // @ts-ignore
         output = Object.keys(dir.children).join('\n');
       } else {
         output = 'Not a directory';
@@ -130,6 +114,6 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
     default:
       output = `Command not found: ${command}. Type 'help' for available commands.`;
   }
-
+   // @ts-ignore
   return { output, newDirectory };
 };

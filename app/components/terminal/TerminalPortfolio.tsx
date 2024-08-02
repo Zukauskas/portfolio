@@ -77,7 +77,8 @@ const TerminalPortfolio: React.FC = () => {
       await loadAllFiles();
       setOutput([
         'Welcome to the Developer Portfolio Terminal',
-        'Type \'help\' for available commands or use the navigation below.'
+        'Type \'help\' for available commands or use the navigation below.',
+        'Type \'startx\' to switch to the GUI interface.'
       ]);
     };
 
@@ -237,11 +238,6 @@ const TerminalPortfolio: React.FC = () => {
       <div className="scan-lines"></div>
       <div className="flex-grow overflow-y-auto p-4">
         <div className={`terminal-content ${flicker ? 'flicker' : ''}`}>
-          <div className="mb-4">
-            <div>Welcome to the Zukauskas.dev Portfolio Terminal</div>
-            <div>Type &apos;help&apos; for available commands or use the navigation below.</div>
-            <div>Type &apos;startx&apos; to switch to the GUI interface.</div>
-          </div>
           {output.map((line, index) => (
             <div key={index}>
               {Array.isArray(line) && line[0] === 'MARKDOWN' ? (

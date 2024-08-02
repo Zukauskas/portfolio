@@ -15,8 +15,11 @@ const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
     useEffect(() => {
         const loadContent = async () => {
             await loadAllFiles();
+            // @ts-ignore
             const aboutContent = fileSystem.children.home.children.guest.children['about.md'].content;
+            // @ts-ignore
             const skillsContent = fileSystem.children.home.children.guest.children['skills.md'].content;
+            // @ts-ignore
             const contactContent = fileSystem.children.home.children.guest.children['contact.md'].content;
             setContent({
                 about: aboutContent,

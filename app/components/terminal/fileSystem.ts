@@ -17,7 +17,7 @@ export const fileSystem: localFile = {
           children: {
             'about.md': { name: 'about.md', type: 'file', content: '' },
             'skills.md': { name: 'skills.md', type: 'file', content: '' },
-            'contact.md': { name: 'contact.md', type: 'file', content: '' }, // Note: it's 'contact.md', not 'contacts.md'
+            'contact.md': { name: 'contact.md', type: 'file', content: '' },
             'projects': {
               name: 'projects',
               type: 'directory',
@@ -49,10 +49,13 @@ export async function loadAllFiles() {
     const aboutContent = await import('../../content/about.md');
     const skillsContent = await import('../../content/skills.md');
     const contactContent = await import('../../content/contact.md');
-
+    // @ts-ignore
     fileSystem.children.home.children.guest.children.projects.children = projectFiles;
+    // @ts-ignore
     fileSystem.children.home.children.guest.children['about.md'].content = aboutContent.default;
+    // @ts-ignore
     fileSystem.children.home.children.guest.children['skills.md'].content = skillsContent.default;
+    // @ts-ignore
     fileSystem.children.home.children.guest.children['contact.md'].content = contactContent.default;
   } catch (error) {
     console.error("Error loading files:", error);
