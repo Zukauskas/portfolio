@@ -1,24 +1,22 @@
-import Image from "next/image";
+import TerminalPortfolio from '@/app/components/terminal/TerminalPortfolio';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
-export default function Home(): JSX.Element {
-    return (
-        <>
-            <main>
-                <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4 pb-20">
-                    <Image
-                        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
-                        src="/bg-image.jpg"
-                        alt="image with programming code"
-                        width="1920"
-                        height="1080"
-                    />
-                    <div className="z-10 bg-black/50 py-6 px-2">
-                        <h1 className="text-md md:text-5xl md:py-12 md:px-6 animate-typingTitle overflow-hidden whitespace-nowrap text-white font-bold">
-                            Sorry, reworking the website, please come back later!.
-                        </h1>
-                    </div>
-                </div>
-            </main>
-        </>
-    );
-}
+const Home: NextPage = () => {
+  return (
+    <div>
+      <Head>
+        <title>Zukauskas.dev Portfolio</title>
+        <meta name="description" content="A terminal-style developer portfolio" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        <TerminalPortfolio />
+      </main>
+    </div>
+  );
+};
+
+export default Home;
+
