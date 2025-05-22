@@ -17,11 +17,12 @@ module.exports = {
         typingTitle: "typingTitle 2s steps(20)",
       },
     },
-    content: [
+
+    plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
+  },
+  content: [
       "./pages/**/*.{js,ts,jsx,tsx,mdx}",
       "./components/**/*.{js,ts,jsx,tsx,mdx}",
       "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
-  }
 }

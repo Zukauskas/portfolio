@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Terminal, Code, Briefcase, Mail, User, ChevronRight } from 'lucide-react';
-import { fileSystem, loadAllFiles } from '../terminal/fileSystem';
+import { getFileOrDirectory, loadAllFiles } from '../terminal/fileSystem';
+import { FileNode, LocalFile, DirectoryNode } from '../terminal/types';
 import ReactMarkdown from 'react-markdown';
+import ContentSection from './ContentSection';
 
 interface GUIPortfolioProps {
     onSwitchToTerminal: () => void;
@@ -9,23 +11,43 @@ interface GUIPortfolioProps {
 
 const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
     const [activeSection, setActiveSection] = useState<string>('about');
-    const projects = fileSystem.children?.home.children?.guest.children!.projects.children;
+    const [projects, setProjects] = useState<DirectoryNode['children'] | null>(null);
     const [content, setContent] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         const loadContent = async () => {
             await loadAllFiles();
-            // @ts-ignore
-            const aboutContent = fileSystem.children.home.children.guest.children['about.md'].content;
-            // @ts-ignore
-            const skillsContent = fileSystem.children.home.children.guest.children['skills.md'].content;
-            // @ts-ignore
-            const contactContent = fileSystem.children.home.children.guest.children['contact.md'].content;
+
+            const aboutFileNode = getFileOrDirectory(['home', 'guest', 'about.md']);
+            let aboutContent = '';
+            if (aboutFileNode && aboutFileNode.type === 'file') {
+                aboutContent = (aboutFileNode as FileNode).content;
+            }
+
+            const skillsFileNode = getFileOrDirectory(['home', 'guest', 'skills.md']);
+            let skillsContent = '';
+            if (skillsFileNode && skillsFileNode.type === 'file') {
+                skillsContent = (skillsFileNode as FileNode).content;
+            }
+
+            const contactFileNode = getFileOrDirectory(['home', 'guest', 'contact.md']);
+            let contactContent = '';
+            if (contactFileNode && contactFileNode.type === 'file') {
+                contactContent = (contactFileNode as FileNode).content;
+            }
+            
             setContent({
                 about: aboutContent,
                 skills: skillsContent,
                 contacts: contactContent
             });
+
+            const projectsNode = getFileOrDirectory(['home', 'guest', 'projects']);
+            if (projectsNode && projectsNode.type === 'directory') {
+                setProjects((projectsNode as DirectoryNode).children);
+            } else {
+                setProjects(null);
+            }
         };
         loadContent();
     }, []);
@@ -38,8 +60,9 @@ const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
         { id: 'contact', icon: Mail, title: 'Contacts' },
     ];
 
-    const isValidProjects = (proj: any): proj is { [key: string]: { content: string } } => {
-        return proj !== undefined && typeof proj === 'object' && proj !== null;
+    // Updated to work with the new projects state which is DirectoryNode['children'] | null
+    const isValidProjects = (proj: DirectoryNode['children'] | null): proj is DirectoryNode['children'] => {
+        return proj !== null;
     };
 
     return (
@@ -71,22 +94,12 @@ const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
                 </nav>
 
                 <section className="md:w-3/4 bg-gray-800 p-6 rounded-lg shadow-lg border border-green-500">
-                    {activeSection === 'about' && (
-                        <div>
-                            <h2 className="text-2xl font-bold mb-4 text-purple-500">About Me</h2>
-                            <ReactMarkdown className="prose prose-invert prose-green max-w-none">
-                                {content.about}
-                            </ReactMarkdown>
-                        </div>
+                    {activeSection === 'about' && content.about && (
+                        <ContentSection title="About Me" markdownContent={content.about} />
                     )}
 
-                    {activeSection === 'skills' && (
-                        <div>
-                            <h2 className="text-2xl font-bold mb-4 text-purple-500">Skills</h2>
-                            <ReactMarkdown className="prose prose-invert prose-green max-w-none">
-                                {content.skills}
-                            </ReactMarkdown>
-                        </div>
+                    {activeSection === 'skills' && content.skills && (
+                        <ContentSection title="Skills" markdownContent={content.skills} />
                     )}
 
                     {activeSection === 'projects' && (
@@ -94,13 +107,18 @@ const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
                             <h2 className="text-2xl font-bold mb-4 text-purple-500">Projects</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {isValidProjects(projects) ? (
-                                    Object.entries(projects).map(([key, project]) => (
-                                        <div key={key} className="bg-gray-900 p-4 rounded shadow border border-green-500">
-                                            <ReactMarkdown className="prose prose-invert prose-green max-w-none">
-                                                {project.content}
-                                            </ReactMarkdown>
-                                        </div>
-                                    ))
+                                    Object.entries(projects).map(([key, projectNode]) => {
+                                        if (projectNode.type === 'file') {
+                                            return (
+                                                <div key={key} className="bg-gray-900 p-4 rounded shadow border border-green-500">
+                                                    <ReactMarkdown className="prose prose-invert prose-green max-w-none">
+                                                        {(projectNode as FileNode).content}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            );
+                                        }
+                                        return null; 
+                                    })
                                 ) : (
                                     <p>No projects available.</p>
                                 )}
@@ -108,13 +126,8 @@ const GUIPortfolio: React.FC<GUIPortfolioProps> = ({ onSwitchToTerminal }) => {
                         </div>
                     )}
 
-                    {activeSection === 'contact' && (
-                        <div>
-                            <h2 className="text-2xl font-bold mb-4 text-purple-500">Contact</h2>
-                            <ReactMarkdown className="prose prose-invert prose-green max-w-none">
-                                {content.contacts}
-                            </ReactMarkdown>
-                        </div>
+                    {activeSection === 'contact' && content.contacts && (
+                        <ContentSection title="Contact" markdownContent={content.contacts} />
                     )}
                 </section>
             </main>
