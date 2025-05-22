@@ -1,4 +1,7 @@
 import { LocalFile, DirectoryNode, FileNode } from './types';
+import aboutContentString from '../../content/about.md';
+import skillsContentString from '../../content/skills.md';
+import contactContentString from '../../content/contact.md';
 
 export const fileSystem: DirectoryNode = {
   name: '/',
@@ -62,14 +65,16 @@ export async function loadAllFiles() {
     // MDX imports will yield components, not raw strings.
     // For fileSystem.ts, we need strings. Since raw-loader isn't configured,
     // these will effectively be empty for the purpose of `cat` or raw display.
-    const aboutContentModule = await import('../../content/about.md');
-    const aboutContent: string = ''; // Default to empty string
+
+    // const aboutContentModule = await import('../../content/about.md');
+    // const aboutContent: string = ''; // Default to empty string
     
-    const skillsContentModule = await import('../../content/skills.md');
-    const skillsContent: string = ''; // Default to empty string
+    // const skillsContentModule = await import('../../content/skills.md');
+    // const skillsContent: string = ''; // Default to empty string
     
-    const contactContentModule = await import('../../content/contact.md');
-    const contactContent: string = ''; // Default to empty string
+    // const contactContentModule = await import('../../content/contact.md');
+    // const contactContent: string = ''; // Default to empty string
+
 
     // Type-safe access to nested directories
     const homeDir = fileSystem.children.home;
@@ -80,17 +85,23 @@ export async function loadAllFiles() {
 
         const aboutMd = guestDir.children['about.md'];
         if (aboutMd && aboutMd.type === 'file') {
-          (aboutMd as FileNode).content = aboutContent;
+
+          (aboutMd as FileNode).content = aboutContentString as unknown as string;
+
         }
 
         const skillsMd = guestDir.children['skills.md'];
         if (skillsMd && skillsMd.type === 'file') {
-          (skillsMd as FileNode).content = skillsContent;
+
+          (skillsMd as FileNode).content = skillsContentString as unknown as string;
+
         }
 
         const contactMd = guestDir.children['contact.md'];
         if (contactMd && contactMd.type === 'file') {
-          (contactMd as FileNode).content = contactContent;
+
+          (contactMd as FileNode).content = contactContentString as unknown as string;
+
         }
 
         const projectsDirNode = guestDir.children.projects;
