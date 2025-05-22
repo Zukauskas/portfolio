@@ -60,6 +60,48 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
     case 'help':
       output = generateHelpManPage();
       break;
+    case 'about':
+      const aboutFile = getFileOrDirectory(['home', 'guest', 'about.md']);
+      if (aboutFile && aboutFile.type === 'file') {
+        output = ['MARKDOWN', aboutFile.content];
+      } else {
+        output = 'File not found: about.md';
+      }
+      break;
+    case 'skills':
+      const skillsFile = getFileOrDirectory(['home', 'guest', 'skills.md']);
+      if (skillsFile && skillsFile.type === 'file') {
+        output = ['MARKDOWN', skillsFile.content];
+      } else {
+        output = 'File not found: skills.md';
+      }
+      break;
+    case 'contact':
+      const contactFile = getFileOrDirectory(['home', 'guest', 'contact.md']);
+      if (contactFile && contactFile.type === 'file') {
+        output = ['MARKDOWN', contactFile.content];
+      } else {
+        output = 'File not found: contact.md';
+      }
+      break;
+    case 'projects':
+      const projectsDir = getFileOrDirectory(['home', 'guest', 'projects']);
+      if (projectsDir && projectsDir.type === 'directory') {
+        let combinedProjectContent = '';
+        for (const projectName in projectsDir.children) {
+          const projectFile = getFileOrDirectory(['home', 'guest', 'projects', projectName]);
+          if (projectFile && projectFile.type === 'file') {
+            if (combinedProjectContent !== '') {
+              combinedProjectContent += '\n\n---\n\n';
+            }
+            combinedProjectContent += projectFile.content;
+          }
+        }
+        output = ['MARKDOWN', combinedProjectContent];
+      } else {
+        output = 'Projects directory not found.';
+      }
+      break;
     case 'ls':
       const dirNode: LocalFile | null = getFileOrDirectory(currentDirectory);
       if (dirNode && dirNode.type === 'directory') {
