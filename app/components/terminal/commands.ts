@@ -1,5 +1,5 @@
 import { getFileOrDirectory } from './fileSystem';
-import { CommandResponse } from './types';
+import { CommandResponse, LocalFile, DirectoryNode } from './types';
 
 const generateHelpManPage = (): string[] => {
   return [
@@ -61,12 +61,18 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
       output = generateHelpManPage();
       break;
     case 'ls':
-      const dir = getFileOrDirectory(currentDirectory);
-      if (dir && dir.type === 'directory') {
-         // @ts-ignore
-        output = Object.keys(dir.children).join('\n');
+      const dirNode: LocalFile | null = getFileOrDirectory(currentDirectory);
+      if (dirNode && dirNode.type === 'directory') {
+        // Now TypeScript knows dirNode is a DirectoryNode
+        // and dirNode.children is { [key: string]: LocalFile }
+        const directory = dirNode as DirectoryNode; // Explicit cast to DirectoryNode
+        output = Object.keys(directory.children).join('\n');
+        if (output === '') {
+          output = ''; // Keep it empty if no files, so it prints nothing
+        }
       } else {
-        output = 'Not a directory';
+        const pathString = currentDirectory.length > 0 ? currentDirectory.join('/') : '/';
+        output = `ls: cannot access '${pathString}': Not a directory`;
       }
       break;
     case 'cd':
@@ -114,6 +120,5 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
     default:
       output = `Command not found: ${command}. Type 'help' for available commands.`;
   }
-   // @ts-ignore
   return { output, newDirectory };
 };
