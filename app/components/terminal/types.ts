@@ -4,14 +4,22 @@ export interface BootMessage {
   status?: 'OK' | 'FAIL';
 }
 
-export interface localFile {
+export interface FileNode {
   name: string;
+  type: 'file';
   content: string;
-  type: 'file' | 'directory';
-  children?: { [name: string]: localFile };
 }
 
+export interface DirectoryNode {
+  name: string;
+  type: 'directory';
+  children: { [key: string]: LocalFile };
+  content?: string; 
+}
+
+export type LocalFile = FileNode | DirectoryNode;
+
 export interface CommandResponse {
-  output: string;
+  output: string | string[] | null;
   newDirectory?: string[];
 }
