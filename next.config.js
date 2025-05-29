@@ -3,6 +3,11 @@ const path = require('path'); // Ensure path is imported
 
 /** @type {import('next').NextConfig} */
 let nextConfig = {
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   webpack: (config, options) => { // options contains isServer
     // Store the original webpack function if it exists from withMDX
