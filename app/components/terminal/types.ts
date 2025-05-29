@@ -9,7 +9,7 @@ export interface TerminalState {
 export interface BootMessage {
   id: number;
   text: string;
-  status?: 'INITIATING' | 'PASSED' | 'OK' | 'DONE' | 'LOADING...' | 'CALIBRATING' | 'STABLE' | 'ONLINE' | 'ACTIVE' | 'ENGAGED' | 'READY';
+  status?: 'INITIATING' | 'PASSED' | 'OK' | 'DONE' | 'LOADING...' | 'CALIBRATING' | 'STABLE' | 'ONLINE' | 'ACTIVE' | 'ENGAGED' | 'READY' | 'ERROR' | 'FAIL';
 }
 
 export interface FileNode {
