@@ -306,13 +306,16 @@ const TerminalPortfolio: React.FC = () => {
         <div className={`terminal-content ${flicker ? 'flicker' : ''}`}>
           {output.map((line, index) => (
             <div key={index}>
-              {typeof line === 'string' ? (
-                <span>{line}</span>
-              ) : Array.isArray(line) ? (
-                line.map((item, idx) => <span key={idx}>{item}<br /></span>)
+              {Array.isArray(line) ? (
+                line.map((item, subIndex) => (
+                  <ReactMarkdown key={subIndex} className="markdown-output" children={item} />
+                ))
               ) : typeof line === 'object' && line !== null ? (
-                <ReactMarkdown className="markdown-output" children={line.content} />
-              ) : null}
+                // Handle special objects like matrix effect
+                <ReactMarkdown className="markdown-output" children={line.message || JSON.stringify(line)} />
+              ) : (
+                <span>{line}</span>
+              )}
             </div>
           ))}
           <div ref={outputEndRef} />
