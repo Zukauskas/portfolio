@@ -22,4 +22,5 @@ export type LocalFile = FileNode | DirectoryNode;
 export interface CommandResponse {
   output: string | string[] | null;
   newDirectory?: string[];
+  error?: boolean; // Added property
 }

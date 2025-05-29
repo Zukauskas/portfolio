@@ -165,8 +165,10 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
           newDirectory = currentDirectory.slice(0, -1);
           // output = 'Directory changed'; // No output on successful cd
         } else {
-          output = 'cd: already at root';
-          error = true;
+          // If currentDirectory.length is 1 (e.g., ['home']), attempting 'cd ..'
+          // should keep the directory as ['home'] and produce no output or error.
+          // newDirectory is already currentDirectory by default, so no change needed.
+          // output remains null, error remains false.
         }
       } else if (args[0]) {
         const newPath = [...currentDirectory, args[0]];
