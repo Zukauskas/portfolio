@@ -1,7 +1,15 @@
+export interface TerminalState {
+  bootMessages: BootMessage[];
+  currentDirectory: string[];
+  localFiles: LocalFile[];
+  commandOutput: string | string[] | null;
+  error?: boolean; // Added property
+}
+
 export interface BootMessage {
   id: number;
   text: string;
-  status?: 'OK' | 'FAIL';
+  status?: 'INITIATING' | 'PASSED' | 'OK' | 'DONE' | 'LOADING...' | 'CALIBRATING' | 'STABLE' | 'ONLINE' | 'ACTIVE' | 'ENGAGED' | 'READY';
 }
 
 export interface FileNode {
