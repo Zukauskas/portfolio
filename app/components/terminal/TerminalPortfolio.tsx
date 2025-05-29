@@ -88,15 +88,42 @@ const TerminalPortfolio: React.FC = () => {
   }, []);
 
   const playSound = useCallback((soundType: 'type' | 'execute' | 'error') => {
-    if (audioRef.current) {
-      let soundSrc = '/type-sound.mp3'; // Default
-      if (soundType === 'execute') {
-        soundSrc = '/execute-sound.mp3'; // Assumed new sound file
-      } else if (soundType === 'error') {
-        soundSrc = '/error-sound.mp3'; // Assumed new sound file
-      }
-      audioRef.current.src = soundSrc;
-      audioRef.current.play().catch(e => console.error("Error playing sound:", e));
+    if (!audioRef.current) {
+      return;
+    }
+
+    let soundSrc = '';
+    const defaultSoundSrc = '/type-sound.mp3';
+
+    if (soundType === 'execute') {
+      soundSrc = '/execute-sound.mp3';
+    } else if (soundType === 'error') {
+      soundSrc = '/error-sound.mp3';
+    } else { // 'type' or any other case
+      soundSrc = defaultSoundSrc;
+    }
+
+    audioRef.current.src = soundSrc;
+    const audioPromise = audioRef.current.play();
+
+    if (audioPromise !== undefined) {
+      audioPromise
+        .then(() => {
+          // Playback successful, no action needed.
+        })
+        .catch(error => {
+          console.error("Error playing sound:", soundSrc, error);
+          // Fallback logic
+          if (soundSrc === '/execute-sound.mp3' || soundSrc === '/error-sound.mp3') {
+            console.warn("Warning: " + soundSrc + " not found or failed to play, using default sound.");
+            if (audioRef.current) { // Re-check audioRef.current as this is an async callback
+              audioRef.current.src = defaultSoundSrc;
+              audioRef.current.play().catch(fallbackError => {
+                console.error("Error playing fallback sound:", defaultSoundSrc, fallbackError);
+              });
+            }
+          }
+        });
     }
   }, []);
 
@@ -151,9 +178,9 @@ const TerminalPortfolio: React.FC = () => {
         }
         setHistoryIndex(-1);
         setInput('');
-      }
-    }
-  };
+      } // This brace closes 'if (commandToProcess)'
+    // The extra brace that was here has been removed.
+  }; // This brace closes 'handleSubmit'
   
   const handleMatrixComplete = () => {
     setShowMatrixEffect(false);
