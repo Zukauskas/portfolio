@@ -152,9 +152,9 @@ const TerminalPortfolio: React.FC = () => {
 
           if (typeof commandOutput === 'object' && commandOutput !== null && 'type' in commandOutput && commandOutput.type === 'matrix_effect') {
             // Handle matrix effect command
-            if (commandOutput.message) {
-              setOutput(prev => [...prev, commandOutput.message as string]);
-            }
+            // if (commandOutput.message) {
+            //   setOutput(prev => [...prev, commandOutput.message as string]);
+            // }
             playSound('execute');
             // Delay showing matrix to allow message to render if any
             setTimeout(() => {
