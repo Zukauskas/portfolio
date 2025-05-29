@@ -107,17 +107,15 @@ const TerminalPortfolio: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim()) {
-      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${input}`]);
-      setCommandHistory(prev => [...prev, input]);
+    const commandToProcess = input.trim(); // Define once
 
-      const commandToProcess = input.trim();
-      if (commandToProcess) {
-        setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${commandToProcess}`]);
-        setCommandHistory(prev => [...prev, commandToProcess]);
+    if (commandToProcess) {
+      // Add command to output and history only once
+      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${commandToProcess}`]);
+      setCommandHistory(prev => [...prev, commandToProcess]);
 
-        if (commandToProcess.toLowerCase() === 'startx') {
-          setOutput(prev => [...prev, "Starting GUI interface..."]);
+      if (commandToProcess.toLowerCase() === 'startx') {
+        setOutput(prev => [...prev, "Starting GUI interface..."]);
           playSound('execute');
           setTimeout(() => {
             setInterfaceChoice('gui');
@@ -161,8 +159,7 @@ const TerminalPortfolio: React.FC = () => {
     setShowMatrixEffect(false);
     setOutput(prev => [...prev, "Matrix effect terminated. Welcome back."]); // Optional message
     inputRef.current?.focus(); // Refocus on input
-      setInput('');
-    }
+    setInput('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -303,12 +300,9 @@ const TerminalPortfolio: React.FC = () => {
               ref={inputRef}
               type="text"
               value={input}
-              onChange={handleInput}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent text-green-500 focus:outline-none flex-grow" // Ensure input text is green
-              onChange={handleInput}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent focus:outline-none flex-grow"
+              onChange={handleInput} // Keep this one
+              onKeyDown={handleKeyDown} // Keep this one
+              className="bg-transparent text-green-500 focus:outline-none flex-grow" // Combined classes
               autoFocus
             />
           </form>
