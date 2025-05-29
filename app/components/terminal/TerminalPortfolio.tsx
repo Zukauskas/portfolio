@@ -306,17 +306,13 @@ const TerminalPortfolio: React.FC = () => {
         <div className={`terminal-content ${flicker ? 'flicker' : ''}`}>
           {output.map((line, index) => (
             <div key={index}>
-              {typeof line === 'object' && line !== null && 'type' in line && line.type === 'matrix_effect' ? (
-                <span className="text-accent">{line.message as string}</span> // Display matrix intro message
-              ) : Array.isArray(line) && line[0] === 'MARKDOWN' ? (
-                <ReactMarkdown className="markdown prose prose-invert">{line[1]}</ReactMarkdown>
+              {typeof line === 'string' ? (
+                <span>{line}</span>
               ) : Array.isArray(line) ? (
-                <pre className="whitespace-pre-wrap font-vt323 text-sm"> {/* Ensure pre also uses vt323 */}
-                  {line.join('\n')}
-                </pre>
-              ) : (
-                line
-              )}
+                line.map((item, idx) => <span key={idx}>{item}<br /></span>)
+              ) : typeof line === 'object' && line !== null ? (
+                <ReactMarkdown className="markdown-output" children={line.content} />
+              ) : null}
             </div>
           ))}
           <div ref={outputEndRef} />
