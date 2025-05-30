@@ -92,7 +92,7 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
       break;
     case 'matrix':
       // Special command, will be handled by TerminalPortfolio.tsx
-      output = { type: 'matrix_effect', message: "Initiating Matrix display..." };
+      output = "Initiating Matrix display...";
       break;
     case 'about':
       const aboutFile = getFileOrDirectory(['home', 'guest', 'about.md']);
