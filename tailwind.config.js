@@ -2,6 +2,9 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        vt323: ['VT323', 'monospace'],
+      },
       keyframes: {
         typingTitle: {
           "0%": {

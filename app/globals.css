@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'VT323';
+  src: url('/fonts/VT323-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: #000000; /* Darker background */
+  color: #00FF00; /* Vibrant green text */
+}
+
 @keyframes flicker {
   0% { opacity: 0.27861; }
   5% { opacity: 0.34769; }
@@ -102,7 +115,7 @@
   right: 0;
   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
   z-index: 2;
-  background-size: 100% 2px, 3px 100%;
+  background-size: 100% 2px, 3px 100%; /* Slightly more subtle scanlines within CRT */
   pointer-events: none;
 }
 
@@ -114,11 +127,11 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(18, 16, 16, 0.1);
+  background: rgba(20, 20, 20, 0.1); /* Slightly lighter flicker color */
   opacity: 0;
   z-index: 2;
   pointer-events: none;
-  animation: flicker 0.15s infinite;
+  animation: flicker 0.2s infinite; /* Slower flicker for CRT effect */
 }
 
 .scan-lines {
@@ -129,12 +142,16 @@
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    transparent 50%,
-    rgba(0, 0, 0, 0.3) 51%
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 40%, /* Start scanline effect lower */
+    rgba(20, 255, 20, 0.05) 50%, /* Fainter, greenish scanline */
+    rgba(20, 255, 20, 0.08) 51%,
+    rgba(0,0,0,0) 60%, /* End scanline effect higher */
+    rgba(0,0,0,0) 100%
   );
-  background-size: 100% 4px;
-  animation: pan-scanlines 1s linear infinite;
-  z-index: 1;
+  background-size: 100% 5px; /* Slightly thicker scanlines */
+  animation: pan-scanlines 2s linear infinite; /* Slower scanline pan */
+  z-index: 1; /* Ensure it's above background but below text */
   pointer-events: none;
 }
 
@@ -143,22 +160,29 @@
     background-position: 0 0;
   }
   to {
-    background-position: 0 -4px;
+    background-position: 0 -5px; /* Match background-size */
   }
 }
 
 .terminal-content {
   position: relative;
-  z-index: 1;
-  animation: textShadow 1.6s infinite;
+  z-index: 10; /* Ensure terminal content is above CRT effects */
+  /* animation: textShadow 3s infinite alternate ease-in-out; /* More subtle text shadow */
+  text-shadow: 0 0 2px #00ff00, 0 0 5px rgba(0, 255, 0, 0.5); /* Static green glow */
 }
 
+/* Ensure .bg-black uses the new global background if needed, or override locally */
 .bg-black {
-  background-color: #0a0a0a;
+  background-color: #000000; /* Consistent with body */
 }
 
+/* Ensure .text-green-500 uses the new global text color or a specific shade */
 .text-green-500 {
-  color: #00ff00;
+  color: #00FF00; /* Consistent with body text color */
+}
+
+.text-accent {
+  color: #CCCCCC; /* Accent color for prompts, etc. */
 }
 
 .flicker::before {
@@ -168,8 +192,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 255, 0, 0.2);
-  z-index: 3;
+  background: rgba(0, 255, 0, 0.15); /* Slightly less intense text block flicker */
+  z-index: 3; /* Ensure it's above terminal content but below overlays if any */
   pointer-events: none;
-  animation: flicker 0.1s infinite;
+  animation: flicker 0.15s infinite; /* Match CRT flicker, or make distinct */
 }

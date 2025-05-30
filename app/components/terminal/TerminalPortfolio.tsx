@@ -6,6 +6,7 @@ import { BootMessage } from './types';
 import { bootMessages } from './bootSequence';
 import ReactMarkdown from 'react-markdown';
 import GUIPortfolio from '../gui-portfolio/GUIPortfolio';
+import MatrixEffect from './MatrixEffect'; // Import MatrixEffect
 import { loadAllFiles } from './fileSystem';
 
 
@@ -13,12 +14,13 @@ const TerminalPortfolio: React.FC = () => {
   const [bootComplete, setBootComplete] = useState(false);
   const [currentBootMessage, setCurrentBootMessage] = useState(0);
   const [input, setInput] = useState('');
-  const [output, setOutput] = useState<(string | string[])[]>([])
+  const [output, setOutput] = useState<(string | string[] | Record<string, any>)[]>([]) // Output can now include special objects
   const [currentDirectory, setCurrentDirectory] = useState<string[]>(['home', 'guest']);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [flicker, setFlicker] = useState(false);
   const [interfaceChoice, setInterfaceChoice] = useState<'terminal' | 'gui' | null>(null);
+  const [showMatrixEffect, setShowMatrixEffect] = useState(false); // State for Matrix effect
 
   const inputRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -85,10 +87,43 @@ const TerminalPortfolio: React.FC = () => {
     initializeTerminal();
   }, []);
 
-  const playSound = useCallback((soundType: 'type' | 'execute') => {
-    if (audioRef.current) {
-      audioRef.current.src = soundType === 'type' ? '/type-sound.mp3' : '/type-sound.mp3';
-      audioRef.current.play().catch(e => console.error("Error playing sound:", e));
+  const playSound = useCallback((soundType: 'type' | 'execute' | 'error') => {
+    if (!audioRef.current) {
+      return;
+    }
+
+    let soundSrc = '';
+    const defaultSoundSrc = '/type-sound.mp3';
+
+    if (soundType === 'execute') {
+      soundSrc = '/execute-sound.mp3';
+    } else if (soundType === 'error') {
+      soundSrc = '/error-sound.mp3';
+    } else { // 'type' or any other case
+      soundSrc = defaultSoundSrc;
+    }
+
+    audioRef.current.src = soundSrc;
+    const audioPromise = audioRef.current.play();
+
+    if (audioPromise !== undefined) {
+      audioPromise
+        .then(() => {
+          // Playback successful, no action needed.
+        })
+        .catch(error => {
+          console.error("Error playing sound:", soundSrc, error);
+          // Fallback logic
+          if (soundSrc === '/execute-sound.mp3' || soundSrc === '/error-sound.mp3') {
+            console.warn("Warning: " + soundSrc + " not found or failed to play, using default sound.");
+            if (audioRef.current) { // Re-check audioRef.current as this is an async callback
+              audioRef.current.src = defaultSoundSrc;
+              audioRef.current.play().catch(fallbackError => {
+                console.error("Error playing fallback sound:", defaultSoundSrc, fallbackError);
+              });
+            }
+          }
+        });
     }
   }, []);
 
@@ -99,33 +134,59 @@ const TerminalPortfolio: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim()) {
-      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${input}`]);
-      setCommandHistory(prev => [...prev, input]);
+    const commandToProcess = input.trim(); // Define once
 
-      if (input.trim().toLowerCase() === 'startx') {
+    if (commandToProcess) {
+      // Add command to output and history only once
+      setOutput(prev => [...prev, `guest@zukauskas.dev:${currentDirectory.join('/')}$ ${commandToProcess}`]);
+      setCommandHistory(prev => [...prev, commandToProcess]);
+
+      if (commandToProcess.toLowerCase() === 'startx') {
         setOutput(prev => [...prev, "Starting GUI interface..."]);
-        playSound('execute');
-        setTimeout(() => {
-          setInterfaceChoice('gui');
-        }, 1000); // Delay for 1 second to show the command output
-      } else {
-        const { output: commandOutput, newDirectory } = processCommand(input, currentDirectory);
-        if (commandOutput === null) {
-          // Clear the screen
-          setOutput([]);
+          playSound('execute');
+          setTimeout(() => {
+            setInterfaceChoice('gui');
+          }, 1000);
         } else {
-          setOutput(prev => [...prev, commandOutput]);
-        }
-        if (newDirectory) {
-          setCurrentDirectory(newDirectory);
-        }
-        playSound('execute');
-      }
+          const { output: commandOutput, newDirectory, error } = processCommand(commandToProcess, currentDirectory);
 
-      setHistoryIndex(-1);
-      setInput('');
-    }
+          if (typeof commandOutput === 'object' && commandOutput !== null && 'type' in commandOutput && commandOutput.type === 'matrix_effect') {
+            // Handle matrix effect command
+            // if (commandOutput.message) {
+            //   setOutput(prev => [...prev, commandOutput.message as string]);
+            // }
+            playSound('execute');
+            // Delay showing matrix to allow message to render if any
+            setTimeout(() => {
+              setShowMatrixEffect(true); 
+            }, 500);
+          } else if (commandOutput === null) {
+            setOutput([]); // Clear screen for 'clear' command
+            playSound('execute'); // Typically clear doesn't have a sound, but can keep for consistency
+          } else {
+            setOutput(prev => [...prev, commandOutput as string | string[]]);
+            if (error) {
+              playSound('error');
+            } else {
+              playSound('execute');
+            }
+          }
+
+          if (newDirectory) {
+            setCurrentDirectory(newDirectory);
+          }
+        }
+        setHistoryIndex(-1);
+        setInput('');
+      } // This brace closes 'if (commandToProcess)'
+    // The extra brace that was here has been removed.
+  }; // This brace closes 'handleSubmit'
+  
+  const handleMatrixComplete = () => {
+    setShowMatrixEffect(false);
+    setOutput(prev => [...prev, "Matrix effect terminated. Welcome back."]); // Optional message
+    inputRef.current?.focus(); // Refocus on input
+    setInput('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -172,7 +233,7 @@ const TerminalPortfolio: React.FC = () => {
 
   if (!bootComplete) {
     return (
-      <div className="bg-black text-white font-mono h-screen flex flex-col relative">
+      <div className="bg-black text-green-500 font-vt323 h-screen flex flex-col relative">
         <div className="crt"></div>
         <div className="scan-lines"></div>
         <div className="flex-grow overflow-y-auto p-4">
@@ -197,20 +258,20 @@ const TerminalPortfolio: React.FC = () => {
 
   if (bootComplete && interfaceChoice === null) {
     return (
-      <div className="bg-black text-white font-mono h-screen flex flex-col items-center justify-center relative">
+      <div className="bg-black text-green-500 font-vt323 h-screen flex flex-col items-center justify-center relative">
         <div className="crt"></div>
         <div className="scan-lines"></div>
         <h1 className="text-2xl mb-8">Choose Your Interface</h1>
         <div className="flex space-x-4">
           <button
             onClick={() => handleInterfaceChoice('terminal')}
-            className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded"
+            className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded font-sans" // Use sans for buttons
           >
             Terminal
           </button>
           <button
             onClick={() => handleInterfaceChoice('gui')}
-            className="bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-600 text-black font-bold py-2 px-4 rounded font-sans" // Use sans for buttons
           >
             GUI
           </button>
@@ -229,10 +290,15 @@ const TerminalPortfolio: React.FC = () => {
     return <GUIPortfolio onSwitchToTerminal={handleSwitchToTerminal} />;
   }
   // Render the terminal interface
+  if (showMatrixEffect) {
+    return <MatrixEffect onComplete={handleMatrixComplete} duration={10000} />; // Show Matrix effect
+  }
+
   return (
     <div
       ref={terminalRef}
-      className="bg-black text-white font-mono h-screen flex flex-col relative"
+      className="bg-black text-green-500 font-vt323 h-screen flex flex-col relative" // Applied VT323 and colors
+      onClick={() => inputRef.current?.focus()} // Focus on click anywhere in terminal
     >
       <div className="crt"></div>
       <div className="scan-lines"></div>
@@ -240,28 +306,31 @@ const TerminalPortfolio: React.FC = () => {
         <div className={`terminal-content ${flicker ? 'flicker' : ''}`}>
           {output.map((line, index) => (
             <div key={index}>
-              {Array.isArray(line) && line[0] === 'MARKDOWN' ? (
-                <ReactMarkdown className="markdown prose prose-invert">{line[1]}</ReactMarkdown>
+             
+              {typeof line === 'string' ? (
+                <span>{line}</span>
               ) : Array.isArray(line) ? (
-                <pre className="whitespace-pre-wrap font-mono text-sm">
-                  {line.join('\n')}
-                </pre>
+                line.map((item, subIndex) => (
+                  <span key={subIndex}>{item}<br /></span>
+                ))
+              ) : typeof line === 'object' && line !== null && 'type' in line && line.type === 'matrix_effect' ? (
+                <span className="text-yellow-500">Matrix effect initiated...</span>
               ) : (
-                line
+                <ReactMarkdown className="markdown" children={line as unknown as string} />
               )}
             </div>
           ))}
           <div ref={outputEndRef} />
           <form onSubmit={handleSubmit} className="flex items-center">
-            <Terminal size={20} className="mr-2" />
-            <span className="mr-2">guest@zukauskas.dev:{currentDirectory.join('/')}$</span>
+            <Terminal size={20} className="mr-2 text-accent" /> 
+            <span className="mr-2 text-accent">guest@zukauskas.dev:{currentDirectory.join('/')}$</span>
             <input
               ref={inputRef}
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent focus:outline-none flex-grow"
+              onChange={handleInput} // Keep this one
+              onKeyDown={handleKeyDown} // Keep this one
+              className="bg-transparent text-green-500 focus:outline-none flex-grow" // Combined classes
               autoFocus
             />
           </form>

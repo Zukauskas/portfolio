@@ -27,6 +27,9 @@ const generateHelpManPage = (): string[] => {
     "       echo      Display a line of text",
     "       clear     Clear the terminal screen",
     "       help      Display this help information",
+    "       ai-status Display the status of AI systems",
+    "       matrix    Engage digital rain effect",
+    "       manifesto Display the AI Whisperer's Creed",
     "",
     "EXAMPLES",
     "       skills",
@@ -53,12 +56,43 @@ const generateHelpManPage = (): string[] => {
 
 export const processCommand = (cmd: string, currentDirectory: string[]): CommandResponse => {
   const [command, ...args] = cmd.split(' ');
-  let output: string | string[] | null;
+  let output: string | string[] | null = null;
   let newDirectory = currentDirectory;
+  let error: string | boolean = false;
 
   switch (command.toLowerCase()) {
     case 'help':
+    case 'halp': // A little fun easter egg
       output = generateHelpManPage();
+      break;
+    case 'manifesto': // Alias for 'cat ai-manifesto.md'
+      const manifestoFile = getFileOrDirectory(['home', 'guest', 'ai-manifesto.md']);
+      if (manifestoFile && manifestoFile.type === 'file') {
+        output = ['MARKDOWN', manifestoFile.content];
+      } else {
+        // This case should ideally not be reached if loadAllFiles works as expected
+        output = 'AI Manifesto not found. Critical system file missing!';
+        error = true;
+      }
+      break;
+    case 'ai-status':
+      output = [
+        "AI System Status:",
+        "---------------------------------",
+        "Core Processors: All 1024 cores online",
+        "Neural Network: ZPT-3 (Large) - Active",
+        "Sentiment Analysis Unit: Positive Bias Detected",
+        "Cognitive Filters: Engaged",
+        "Whisperer Link: Stable",
+        "System Integrity: 100%",
+        "AI Readiness: Ready for advanced prompting.",
+        "---------------------------------",
+        "\"Speak, and I shall decode the digital echoes.\""
+      ];
+      break;
+    case 'matrix':
+      // Special command, will be handled by TerminalPortfolio.tsx
+      output = "Initiating Matrix display...";
       break;
     case 'about':
       const aboutFile = getFileOrDirectory(['home', 'guest', 'about.md']);
@@ -66,6 +100,7 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
         output = ['MARKDOWN', aboutFile.content];
       } else {
         output = 'File not found: about.md';
+        error = true;
       }
       break;
     case 'skills':
@@ -74,6 +109,7 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
         output = ['MARKDOWN', skillsFile.content];
       } else {
         output = 'File not found: skills.md';
+        error = true;
       }
       break;
     case 'contact':
@@ -82,6 +118,7 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
         output = ['MARKDOWN', contactFile.content];
       } else {
         output = 'File not found: contact.md';
+        error = true;
       }
       break;
     case 'projects':
@@ -97,57 +134,76 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
             combinedProjectContent += projectFile.content;
           }
         }
-        output = ['MARKDOWN', combinedProjectContent];
+        if (combinedProjectContent === '') {
+          output = 'No projects found in the projects directory.';
+          // error = true; // debatable if this is an error
+        } else {
+          output = ['MARKDOWN', combinedProjectContent];
+        }
       } else {
         output = 'Projects directory not found.';
+        error = true;
       }
       break;
     case 'ls':
       const dirNode: LocalFile | null = getFileOrDirectory(currentDirectory);
       if (dirNode && dirNode.type === 'directory') {
-        // Now TypeScript knows dirNode is a DirectoryNode
-        // and dirNode.children is { [key: string]: LocalFile }
-        const directory = dirNode as DirectoryNode; // Explicit cast to DirectoryNode
+        const directory = dirNode as DirectoryNode;
         output = Object.keys(directory.children).join('\n');
         if (output === '') {
-          output = ''; // Keep it empty if no files, so it prints nothing
+          // output = ''; // No need to set to empty string, handled by default null
         }
       } else {
         const pathString = currentDirectory.length > 0 ? currentDirectory.join('/') : '/';
         output = `ls: cannot access '${pathString}': Not a directory`;
+        error = true;
       }
       break;
     case 'cd':
       if (args[0] === '..') {
-        if (currentDirectory.length > 1) {
+        if (currentDirectory.length > 1) { // Ensure we are not at /home or /
           newDirectory = currentDirectory.slice(0, -1);
-          output = 'Directory changed';
+          // output = 'Directory changed'; // No output on successful cd
         } else {
-          output = 'Already at root directory';
+          // If currentDirectory.length is 1 (e.g., ['home']), attempting 'cd ..'
+          // should keep the directory as ['home'] and produce no output or error.
+          // newDirectory is already currentDirectory by default, so no change needed.
+          // output remains null, error remains false.
         }
       } else if (args[0]) {
         const newPath = [...currentDirectory, args[0]];
         const newDir = getFileOrDirectory(newPath);
         if (newDir && newDir.type === 'directory') {
           newDirectory = newPath;
-          output = 'Directory changed';
+          // output = 'Directory changed'; // No output on successful cd
         } else {
-          output = 'Directory not found';
+          output = `cd: ${args[0]}: No such file or directory`;
+          error = true;
         }
       } else {
-        output = 'Usage: cd <directory>';
+        // No argument for cd, usually means go to home directory.
+        // For this terminal, let's consider it an implicit success or no-op if already home.
+        // If currentDirectory is not ['home', 'guest'], then change to it.
+        if (currentDirectory.join('/') !== 'home/guest') {
+            newDirectory = ['home', 'guest'];
+        }
+        // output = 'Usage: cd <directory>'; // No output on successful cd to home
+        // error = true; // Not an error
       }
       break;
       case 'cat':
         if (args[0]) {
-          const file = getFileOrDirectory([...currentDirectory, args[0]]);
+          const filePath = [...currentDirectory, args[0]];
+          const file = getFileOrDirectory(filePath);
           if (file && file.type === 'file') {
             output = ['MARKDOWN', file.content];
           } else {
-            output = 'File not found';
+            output = `cat: ${args[0]}: No such file or directory`;
+            error = true;
           }
         } else {
-          output = 'Usage: cat <filename>';
+          output = 'cat: missing operand';
+          error = true;
         }
         break;
     case 'pwd':
@@ -157,10 +213,11 @@ export const processCommand = (cmd: string, currentDirectory: string[]): Command
       output = args.join(' ');
       break;
     case 'clear':
-      output = null;
+      output = null; // Special case for clearing the screen
       break;
     default:
       output = `Command not found: ${command}. Type 'help' for available commands.`;
+      error = true;
   }
-  return { output, newDirectory };
+  return { output, newDirectory, error };
 };
